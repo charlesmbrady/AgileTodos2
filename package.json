@@ -5,10 +5,10 @@
   "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "start-dev": "NODE_ENV=test run-p start:client start:server",
+    "start-dev": "run-p start:client start:server",
     "start:coverage": "run-p start:client start:server:coverage",
     "start:client": "cd frontend && yarn start-dev",
-    "start:server": "cd backend && node server.js",
+    "start:server": "node backend/server.js",
     "start:server:coverage": "cd backend && yarn start:coverage",
     "cypress:open": "cypress open -C cypress.local.json",
     "cypress:run": "cypress run",
