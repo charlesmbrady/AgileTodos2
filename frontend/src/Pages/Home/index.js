@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Healthcheck</h1>
+      <h1>Register</h1>
       <button onClick={() => healthcheck()}>ping</button>
     </div>
   );

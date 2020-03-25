@@ -1,5 +1,5 @@
 {
-  "name": "MERNolithic_sql",
+  "name": "AgileTodos",
   "version": "1.0.0",
   "description": "This project is a fullstack javascript application built with Charles' MERN template",
   "main": "backend/server.js",
