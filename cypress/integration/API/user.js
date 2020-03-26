@@ -11,50 +11,17 @@ describe('API Tests', () => {
       cy.request(
         'DELETE',
         `${Cypress.config('apiUrl')}/auth/user/${response.body.id}`
-      ).then(deleteRes => {
-        expect(deleteRes.status).to.equal(200);
-      });
+      );
     });
   });
 
-  it('PUT /auth/user/:id - can update a user', function() {
+  it('PUT /auth/user/:id - update a user', function() {
     cy.request('POST', `${Cypress.config('apiUrl')}/auth/user`, {
       firstName: 'adff',
       lastName: 'reee',
       email: 'ranom',
       password: 'Password1!'
     }).then(response => {
-      // response.body is automatically serialized into JSON
-      console.log(response);
-      expect(response.body).to.have.property('firstName', 'adff'); // true
-      cy.request(
-        'PUT',
-        `${Cypress.config('apiUrl')}/auth/user/${response.id}`,
-        {
-          firstName: 'anewname'
-        }
-      ).then(newResponse => {
-        expect(newResponse.body).to.have.property('firstName', 'anewname');
-        cy.request(
-          'DELETE',
-          `${Cypress.config('apiUrl')}/auth/user/${response.body.id}`
-        ).then(deleteRes => {
-          expect(deleteRes.status).to.equal(200);
-        });
-      });
-    });
-  });
-
-  it('PUT /auth/user/:id - can update a user', function() {
-    cy.request('POST', `${Cypress.config('apiUrl')}/auth/user`, {
-      firstName: 'adff',
-      lastName: 'reee',
-      email: 'ranom',
-      password: 'Password1!'
-    }).then(response => {
-      // response.body is automatically serialized into JSON
-      console.log(response);
-      expect(response.body).to.have.property('firstName', 'adff'); // true
       cy.request(
         'PUT',
         `${Cypress.config('apiUrl')}/auth/user/${response.body.id}`,
@@ -62,12 +29,20 @@ describe('API Tests', () => {
           firstName: 'anewname'
         }
       ).then(newResponse => {
-        expect(newResponse.body).to.have.property('firstName', 'anewname');
+        expect(newResponse.status).to.equal(200);
         cy.request(
-          'DELETE',
+          'GET',
           `${Cypress.config('apiUrl')}/auth/user/${response.body.id}`
-        ).then(deleteRes => {
-          expect(deleteRes.status).to.equal(200);
+        ).then(getRes => {
+          console.log('THE GET RESPONSE____________________ \n\r\n' + getRes);
+          expect(getRes.status).to.equal(200);
+          expect(getRes.body.firstName).to.equal('anewname');
+          cy.request(
+            'DELETE',
+            `${Cypress.config('apiUrl')}/auth/user/${response.body.id}`
+          ).then(deleteRes => {
+            expect(deleteRes.status).to.equal(200);
+          });
         });
       });
     });

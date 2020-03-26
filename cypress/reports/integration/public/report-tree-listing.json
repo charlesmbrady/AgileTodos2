@@ -83,21 +83,21 @@
     {
       "path": "cypress/reports/integration/public/report-tree-listing.json",
       "name": "report-tree-listing.json",
-      "size": 6757,
+      "size": 6356,
       "extension": ".json",
       "type": "file"
     },
     {
       "path": "cypress/reports/integration/public/report.html",
       "name": "report.html",
-      "size": 15969,
+      "size": 12664,
       "extension": ".html",
       "type": "file"
     },
     {
       "path": "cypress/reports/integration/public/report.json",
       "name": "report.json",
-      "size": 14085,
+      "size": 10912,
       "extension": ".json",
       "type": "file"
     },
@@ -114,29 +114,22 @@
               "name": "user.js",
               "children": [
                 {
-                  "path": "cypress/reports/integration/public/screenshots/API/user.js/API Tests -- PUT authuserid - can update a user (failed) (1).png",
-                  "name": "API Tests -- PUT authuserid - can update a user (failed) (1).png",
-                  "size": 132418,
-                  "extension": ".png",
-                  "type": "file"
-                },
-                {
-                  "path": "cypress/reports/integration/public/screenshots/API/user.js/API Tests -- PUT authuserid - can update a user (failed).png",
-                  "name": "API Tests -- PUT authuserid - can update a user (failed).png",
-                  "size": 86741,
+                  "path": "cypress/reports/integration/public/screenshots/API/user.js/API Tests -- PUT authuserid - update a user (failed).png",
+                  "name": "API Tests -- PUT authuserid - update a user (failed).png",
+                  "size": 78094,
                   "extension": ".png",
                   "type": "file"
                 }
               ],
-              "size": 219159,
+              "size": 78094,
               "type": "directory"
             }
           ],
-          "size": 219159,
+          "size": 78094,
           "type": "directory"
         }
       ],
-      "size": 219159,
+      "size": 78094,
       "type": "directory"
     },
     {
@@ -150,12 +143,12 @@
             {
               "path": "cypress/reports/integration/public/videos/API/user.js.mp4",
               "name": "user.js.mp4",
-              "size": 389409,
+              "size": 170547,
               "extension": ".mp4",
               "type": "file"
             }
           ],
-          "size": 389409,
+          "size": 170547,
           "type": "directory"
         },
         {
@@ -169,12 +162,12 @@
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Helpers/registration.js.mp4",
                   "name": "registration.js.mp4",
-                  "size": 83260,
+                  "size": 86255,
                   "extension": ".mp4",
                   "type": "file"
                 }
               ],
-              "size": 83260,
+              "size": 86255,
               "type": "directory"
             },
             {
@@ -184,30 +177,30 @@
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Registration/register1.js.mp4",
                   "name": "register1.js.mp4",
-                  "size": 152812,
+                  "size": 157319,
                   "extension": ".mp4",
                   "type": "file"
                 }
               ],
-              "size": 152812,
+              "size": 157319,
               "type": "directory"
             }
           ],
-          "size": 236072,
+          "size": 243574,
           "type": "directory"
         },
         {
           "path": "cypress/reports/integration/public/videos/test-spec.js.mp4",
           "name": "test-spec.js.mp4",
-          "size": 109900,
+          "size": 111087,
           "extension": ".mp4",
           "type": "file"
         }
       ],
-      "size": 735381,
+      "size": 525208,
       "type": "directory"
     }
   ],
-  "size": 1683230,
+  "size": 1325113,
   "type": "directory"
 }

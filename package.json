@@ -8,7 +8,7 @@
     "start-dev": "run-p start:client start:server",
     "start:coverage": "run-p start:client start:server:coverage",
     "start:client": "cd frontend && yarn start-dev",
-    "start:server": "node backend/server.js",
+    "start:server": "nodemon backend/server.js",
     "start:server:coverage": "cd backend && yarn start:coverage",
     "cypress:open": "cypress open -C cypress.local.json",
     "cypress:run": "cypress run",

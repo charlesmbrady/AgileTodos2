@@ -1,15 +1,15 @@
 {
   "stats": {
     "suites": 3,
-    "tests": 6,
+    "tests": 5,
     "passes": 4,
     "pending": 0,
-    "failures": 2,
-    "start": "2020-03-26T04:40:53.749Z",
-    "end": "2020-03-26T04:40:53.749Z",
-    "duration": 3583,
-    "testsRegistered": 6,
-    "passPercent": 66.66666666666667,
+    "failures": 1,
+    "start": "2020-03-26T05:20:17.402Z",
+    "end": "2020-03-26T05:20:17.402Z",
+    "duration": 3078,
+    "testsRegistered": 5,
+    "passPercent": 80,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "c78b020f-1dfe-4f29-af0b-c9286dfb64ee",
+      "uuid": "edbcce45-d3fe-449c-88a9-7ee9b33cba94",
       "title": "",
       "fullFile": "cypress/integration/API/user.js",
       "file": "cypress/integration/API/user.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e1931095-95c4-43fa-bf27-3c312d9c5509",
+          "uuid": "de4512a4-5f4c-49ec-a985-91c10c1bab5e",
           "title": "API Tests",
           "fullFile": "",
           "file": "",
@@ -38,76 +38,53 @@
               "title": "POST /auth/register - create new user",
               "fullTitle": "API Tests POST /auth/register - create new user",
               "timedOut": null,
-              "duration": 224,
+              "duration": 186,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'The',\n  lastName: 'Goat',\n  email: 'theGoat@GOAT.com',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  expect(response.body).to.have.property('firstName', 'The'); // true\n  cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n    expect(deleteRes.status).to.equal(200);\n  });\n});",
+              "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'The',\n  lastName: 'Goat',\n  email: 'theGoat@GOAT.com',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  expect(response.body).to.have.property('firstName', 'The'); // true\n  cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id));\n});",
               "err": {},
-              "uuid": "dee1af85-e7dc-4bb6-b00f-4fe49c96d688",
-              "parentUUID": "e1931095-95c4-43fa-bf27-3c312d9c5509",
+              "uuid": "babbad68-9b40-4845-ae75-c7efe79385df",
+              "parentUUID": "de4512a4-5f4c-49ec-a985-91c10c1bab5e",
               "isHook": false,
               "skipped": false
             },
             {
-              "title": "PUT /auth/user/:id - can update a user",
-              "fullTitle": "API Tests PUT /auth/user/:id - can update a user",
+              "title": "PUT /auth/user/:id - update a user",
+              "fullTitle": "API Tests PUT /auth/user/:id - update a user",
               "timedOut": null,
-              "duration": 450,
+              "duration": 449,
               "state": "failed",
               "speed": null,
               "pass": false,
               "fail": true,
               "pending": false,
               "context": null,
-              "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'adff',\n  lastName: 'reee',\n  email: 'ranom',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  console.log(response);\n  expect(response.body).to.have.property('firstName', 'adff'); // true\n  cy.request('PUT', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.id), {\n    firstName: 'anewname'\n  }).then(function (newResponse) {\n    expect(newResponse.body).to.have.property('firstName', 'anewname');\n    cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n      expect(deleteRes.status).to.equal(200);\n    });\n  });\n});",
+              "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'adff',\n  lastName: 'reee',\n  email: 'ranom',\n  password: 'Password1!'\n}).then(function (response) {\n  cy.request('PUT', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id), {\n    firstName: 'anewname'\n  }).then(function (newResponse) {\n    expect(newResponse.status).to.equal(200);\n    cy.request('GET', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (getRes) {\n      console.log('THE GET RESPONSE____________________ \\n\\r\\n' + getRes);\n      expect(getRes.status).to.equal(200);\n      expect(getRes.body.firstName).to.equal('anewname');\n      cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n        expect(deleteRes.status).to.equal(200);\n      });\n    });\n  });\n});",
               "err": {
-                "message": "AssertionError: expected [ 0 ] to have property 'firstName'",
-                "estack": "AssertionError: expected [ 0 ] to have property 'firstName'\n    at getRet (http://localhost:8081/__cypress/runner/cypress_runner.js:125261:16)\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:8081/__cypress/runner/cypress_runner.js:162740:29)\n    at Context.thenFn (http://localhost:8081/__cypress/runner/cypress_runner.js:125275:23)\n    at Context.then (http://localhost:8081/__cypress/runner/cypress_runner.js:125647:21)\n    at Context.<anonymous> (http://localhost:8081/__cypress/runner/cypress_runner.js:137585:21)\n    at http://localhost:8081/__cypress/runner/cypress_runner.js:137061:33\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Promise._settlePromiseFromHandler (http://localhost:8081/__cypress/runner/cypress_runner.js:163401:31)\n    at Promise._settlePromise (http://localhost:8081/__cypress/runner/cypress_runner.js:163458:18)\n    at Promise._settlePromiseCtx (http://localhost:8081/__cypress/runner/cypress_runner.js:163495:10)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueue (http://localhost:8081/__cypress/runner/cypress_runner.js:160195:12)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160200:10)\n    at Async.drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160074:14)",
+                "message": "AssertionError: expected undefined to equal 'anewname'",
+                "estack": "AssertionError: expected undefined to equal 'anewname'\n    at getRet (http://localhost:8081/__cypress/runner/cypress_runner.js:125261:16)\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:8081/__cypress/runner/cypress_runner.js:162740:29)\n    at Context.thenFn (http://localhost:8081/__cypress/runner/cypress_runner.js:125275:23)\n    at Context.then (http://localhost:8081/__cypress/runner/cypress_runner.js:125647:21)\n    at Context.<anonymous> (http://localhost:8081/__cypress/runner/cypress_runner.js:137585:21)\n    at http://localhost:8081/__cypress/runner/cypress_runner.js:137061:33\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Promise._settlePromiseFromHandler (http://localhost:8081/__cypress/runner/cypress_runner.js:163401:31)\n    at Promise._settlePromise (http://localhost:8081/__cypress/runner/cypress_runner.js:163458:18)\n    at Promise._settlePromiseCtx (http://localhost:8081/__cypress/runner/cypress_runner.js:163495:10)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueue (http://localhost:8081/__cypress/runner/cypress_runner.js:160195:12)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160200:10)\n    at Async.drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160074:14)",
                 "diff": null
               },
-              "uuid": "b449abc7-0103-4974-9920-a79d4dc843e7",
-              "parentUUID": "e1931095-95c4-43fa-bf27-3c312d9c5509",
-              "isHook": false,
-              "skipped": false
-            },
-            {
-              "title": "PUT /auth/user/:id - can update a user",
-              "fullTitle": "API Tests PUT /auth/user/:id - can update a user",
-              "timedOut": null,
-              "duration": 436,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
-              "pending": false,
-              "context": null,
-              "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'adff',\n  lastName: 'reee',\n  email: 'ranom',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  console.log(response);\n  expect(response.body).to.have.property('firstName', 'adff'); // true\n  cy.request('PUT', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id), {\n    firstName: 'anewname'\n  }).then(function (newResponse) {\n    expect(newResponse.body).to.have.property('firstName', 'anewname');\n    cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n      expect(deleteRes.status).to.equal(200);\n    });\n  });\n});",
-              "err": {
-                "message": "AssertionError: expected { Object (name, errors, ...) } to have property 'firstName'",
-                "estack": "AssertionError: expected { Object (name, errors, ...) } to have property 'firstName'\n    at getRet (http://localhost:8081/__cypress/runner/cypress_runner.js:125261:16)\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:8081/__cypress/runner/cypress_runner.js:162740:29)\n    at Context.thenFn (http://localhost:8081/__cypress/runner/cypress_runner.js:125275:23)\n    at Context.then (http://localhost:8081/__cypress/runner/cypress_runner.js:125647:21)\n    at Context.<anonymous> (http://localhost:8081/__cypress/runner/cypress_runner.js:137585:21)\n    at http://localhost:8081/__cypress/runner/cypress_runner.js:137061:33\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Promise._settlePromiseFromHandler (http://localhost:8081/__cypress/runner/cypress_runner.js:163401:31)\n    at Promise._settlePromise (http://localhost:8081/__cypress/runner/cypress_runner.js:163458:18)\n    at Promise._settlePromiseCtx (http://localhost:8081/__cypress/runner/cypress_runner.js:163495:10)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueue (http://localhost:8081/__cypress/runner/cypress_runner.js:160195:12)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160200:10)\n    at Async.drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160074:14)",
-                "diff": null
-              },
-              "uuid": "81d431bd-c27b-421d-b125-16410204a127",
-              "parentUUID": "e1931095-95c4-43fa-bf27-3c312d9c5509",
+              "uuid": "e1a38704-c0c7-4395-bc23-64b82c70dcd4",
+              "parentUUID": "de4512a4-5f4c-49ec-a985-91c10c1bab5e",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "dee1af85-e7dc-4bb6-b00f-4fe49c96d688"
+            "babbad68-9b40-4845-ae75-c7efe79385df"
           ],
           "failures": [
-            "b449abc7-0103-4974-9920-a79d4dc843e7",
-            "81d431bd-c27b-421d-b125-16410204a127"
+            "e1a38704-c0c7-4395-bc23-64b82c70dcd4"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 1110,
+          "duration": 635,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -123,7 +100,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "30ba383b-942c-420d-9d53-ce34af2b0ba3",
+      "uuid": "a6e1b256-8dc7-49b7-a5fa-44788745a199",
       "title": "",
       "fullFile": "cypress/integration/E2E/Registration/register1.js",
       "file": "cypress/integration/E2E/Registration/register1.js",
@@ -132,7 +109,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "9f4fe357-f326-4837-b180-4e7c8ce43656",
+          "uuid": "effce4b7-c705-4fe4-8b1e-ebb591498831",
           "title": "register",
           "fullFile": "",
           "file": "",
@@ -143,7 +120,7 @@
               "title": "User can visit registration page",
               "fullTitle": "register User can visit registration page",
               "timedOut": null,
-              "duration": 814,
+              "duration": 782,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -152,8 +129,8 @@
               "context": null,
               "code": "cy.visit('/register');",
               "err": {},
-              "uuid": "24c6562d-a3ef-4ad2-8750-b79935a58904",
-              "parentUUID": "9f4fe357-f326-4837-b180-4e7c8ce43656",
+              "uuid": "8abfdfc7-1f52-47cd-93e6-1fb4d29aea96",
+              "parentUUID": "effce4b7-c705-4fe4-8b1e-ebb591498831",
               "isHook": false,
               "skipped": false
             },
@@ -161,7 +138,7 @@
               "title": "Can register a new a user",
               "fullTitle": "register Can register a new a user",
               "timedOut": null,
-              "duration": 1612,
+              "duration": 1628,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -170,21 +147,21 @@
               "context": null,
               "code": "var firstName = 'Charles';\nvar lastName = 'Brady';\nvar email = 'theGoat@gmail.com';\nvar password = 'Password1!';\ncy.visit('/registration'); // Fill out form\ncy.get(_registration[\"default\"].FIRST_NAME).type(firstName);\ncy.get(_registration[\"default\"].LAST_NAME).type(lastName);\ncy.get(_registration[\"default\"].EMAIL).type(email);\ncy.get(_registration[\"default\"].PASSWORD).type(password);\ncy.get(_registration[\"default\"].PASSWORD_CONFIRMATION).type(password); // Submit\ncy.get(_registration[\"default\"].SUBMIT).click();",
               "err": {},
-              "uuid": "efc7a76d-9908-41c0-91ff-bf7342202167",
-              "parentUUID": "9f4fe357-f326-4837-b180-4e7c8ce43656",
+              "uuid": "e3673511-e60c-460e-b3cd-c526c2258c88",
+              "parentUUID": "effce4b7-c705-4fe4-8b1e-ebb591498831",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "24c6562d-a3ef-4ad2-8750-b79935a58904",
-            "efc7a76d-9908-41c0-91ff-bf7342202167"
+            "8abfdfc7-1f52-47cd-93e6-1fb4d29aea96",
+            "e3673511-e60c-460e-b3cd-c526c2258c88"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2426,
+          "duration": 2410,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -200,7 +177,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "f91c707e-c4be-4aba-b0b4-015218c49fbd",
+      "uuid": "79155a11-de33-4c35-b111-e66fb9cdb24b",
       "title": "",
       "fullFile": "cypress/integration/test-spec.js",
       "file": "cypress/integration/test-spec.js",
@@ -209,7 +186,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "9d169a8a-e91b-44c1-b433-f72d5a8325f0",
+          "uuid": "fe6ab142-b770-407e-adbb-674338d12a27",
           "title": "Canary Test",
           "fullFile": "",
           "file": "",
@@ -220,29 +197,29 @@
               "title": "Canary test",
               "fullTitle": "Canary Test Canary test",
               "timedOut": null,
-              "duration": 47,
+              "duration": 33,
               "state": "passed",
-              "speed": "medium",
+              "speed": "fast",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "expect(1).to.equal(1);",
               "err": {},
-              "uuid": "5b9963a9-778f-4197-9005-b66ea1ad2ff9",
-              "parentUUID": "9d169a8a-e91b-44c1-b433-f72d5a8325f0",
+              "uuid": "38c347c6-500e-4a0a-8e10-c1ca64e57ca1",
+              "parentUUID": "fe6ab142-b770-407e-adbb-674338d12a27",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "5b9963a9-778f-4197-9005-b66ea1ad2ff9"
+            "38c347c6-500e-4a0a-8e10-c1ca64e57ca1"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 47,
+          "duration": 33,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
