@@ -3,14 +3,17 @@ const router = require('express').Router();
 const usersController = require('../../controllers/usersController');
 const withAuth = require('../../middleware.js');
 
-// router.post('/login', usersController.auth, passport.authenticate('local'), userController.authenticate);
+// Match with /auth/ endpoint
 router.post('/authenticate', usersController.authenticate);
-router.post('/user', usersController.register);
-router.post('/user/:id', withAuth, usersController.update);
 router.get('/checkToken', withAuth, usersController.checkToken);
 router.get('/logout', usersController.logout);
-router.get('/user/:id', usersController.getUser);
 router.get('/users', usersController.getUsers);
+
+// CRUD
+router.post('/user', usersController.register);
 router.delete('/user/:id', usersController.delete);
+router.get('/user/:id', usersController.getUser);
+router.put('/user/:id', usersController.update);
+router.post('/user/:id', withAuth, usersController.update);
 
 module.exports = router;

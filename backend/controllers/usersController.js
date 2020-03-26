@@ -79,7 +79,7 @@ module.exports = {
       if (err) {
         res.status(500).send(err);
       }
-      res.status(200).send(user);
+      res.json(user);
     });
   },
   getUsers: function(req, res) {
@@ -96,18 +96,25 @@ module.exports = {
     res.send('cookie cleared');
   },
   update: function(req, res) {
-    db.User.update(user, {
+    db.User.update(req.body, {
       where: {
         id: req.params.id
       }
-    });
+    })
+      .then(data => {
+        if (data) {
+          res.json(data);
+        }
+      })
+      .catch(err => res.json(err));
   },
   delete: async function(req, res) {
-    await db.User.destroy({
+    db.User.destroy({
       where: {
         id: req.params.id
       }
+    }).then(destroyed => {
+      res.sendStatus(200);
     });
-    res.status(200).send({ message: 'Successfully deleted the user.' });
   }
 };
