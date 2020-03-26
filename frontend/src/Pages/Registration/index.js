@@ -21,7 +21,6 @@ export default function Registration() {
   };
 
   const submitNewUser = user => {
-    console.log('in it');
     API.createUser(user).then(res => {
       if (res) {
         console.log(res.data);

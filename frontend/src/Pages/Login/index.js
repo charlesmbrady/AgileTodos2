@@ -18,7 +18,6 @@ export default function Login() {
   };
 
   const authenticateUser = user => {
-    console.log('in it');
     API.authenticate(user).then(res => {
       if (res.status === 200) {
         console.log(res.data);
