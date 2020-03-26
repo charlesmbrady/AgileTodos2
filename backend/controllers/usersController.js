@@ -31,8 +31,12 @@ module.exports = {
       });
   },
   authenticate: function(req, res) {
-    const { password } = req.body;
-    db.User.find({ where: { id: req.body.id } }).then(userMatch => {
+    const { email, password } = req.body;
+    db.User.findAll({
+      where: {
+        email: email
+      }
+    }).then(userMatch => {
       //check username
       if (!userMatch) {
         res.status(401).json({ message: 'Error: Invalid username' });
@@ -67,7 +71,7 @@ module.exports = {
     res.status(200).send(user);
   },
   getUser: function(req, res) {
-    db.find({
+    db.User.findAll({
       where: {
         id: req.params.id
       }
