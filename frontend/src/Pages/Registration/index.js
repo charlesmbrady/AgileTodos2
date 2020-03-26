@@ -1,9 +1,10 @@
 import './style.css';
 import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import API from '../../Utilities/API';
 
 export default function Registration() {
+  const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({
     firstName: null,
     lastName: null,
@@ -12,7 +13,7 @@ export default function Registration() {
     passwordConfirmation: null
   });
 
-  const userUpdate = (fieldName, value) => {
+  const formUpdate = (fieldName, value) => {
     let tempUser = { ...user };
     tempUser[fieldName] = value;
 
@@ -24,12 +25,20 @@ export default function Registration() {
     API.createUser(user).then(res => {
       if (res) {
         console.log(res.data);
+        setRedirect(true);
       }
     });
   };
 
+  const renderRedirect = () => {
+    if (redirect) {
+      return <Redirect to='/' />;
+    }
+  };
+
   return (
     <div className='container'>
+      {renderRedirect()}
       <form id='form' className='form' onSubmit={e => e.preventDefault()}>
         <h2 data-test='header'>Register With Us</h2>
         <div className='form-control'>
@@ -43,7 +52,7 @@ export default function Registration() {
             placeholder='Enter first name'
             name='firstName'
             value={user.firstName}
-            onChange={e => userUpdate(e.target.name, e.target.value)}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small className='error' data-test='registration-error-first-name'>
             Error message
@@ -60,7 +69,7 @@ export default function Registration() {
             placeholder='Enter last name'
             name='lastName'
             value={user.lastName}
-            onChange={e => userUpdate(e.target.name, e.target.value)}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small className='error' data-test='registration-error-last-name'>
             Error message
@@ -77,7 +86,7 @@ export default function Registration() {
             placeholder='Enter email'
             name='email'
             value={user.email}
-            onChange={e => userUpdate(e.target.name, e.target.value)}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small className='error' data-test='registration-error-email'>
             Error message
@@ -94,7 +103,7 @@ export default function Registration() {
             placeholder='Enter password'
             name='password'
             value={user.password}
-            onChange={e => userUpdate(e.target.name, e.target.value)}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small className='error' data-test='registration-error-password'>
             Error message
@@ -111,7 +120,7 @@ export default function Registration() {
             data-test='registration-input-password2'
             name='passwordConfirmation'
             value={user.passwordConfirmation}
-            onChange={e => userUpdate(e.target.name, e.target.value)}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small className='error' data-test='registration-error-password2'>
             Error message
