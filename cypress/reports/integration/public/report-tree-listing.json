@@ -83,40 +83,132 @@
     {
       "path": "cypress/reports/integration/public/report-tree-listing.json",
       "name": "report-tree-listing.json",
-      "size": 3589,
+      "size": 7244,
       "extension": ".json",
       "type": "file"
     },
     {
       "path": "cypress/reports/integration/public/report.html",
       "name": "report.html",
-      "size": 6249,
+      "size": 10721,
       "extension": ".html",
       "type": "file"
     },
     {
       "path": "cypress/reports/integration/public/report.json",
       "name": "report.json",
-      "size": 4800,
+      "size": 9190,
       "extension": ".json",
       "type": "file"
+    },
+    {
+      "path": "cypress/reports/integration/public/screenshots",
+      "name": "screenshots",
+      "children": [
+        {
+          "path": "cypress/reports/integration/public/screenshots/E2E",
+          "name": "E2E",
+          "children": [
+            {
+              "path": "cypress/reports/integration/public/screenshots/E2E/Registration",
+              "name": "Registration",
+              "children": [
+                {
+                  "path": "cypress/reports/integration/public/screenshots/E2E/Registration/register1.js",
+                  "name": "register1.js",
+                  "children": [
+                    {
+                      "path": "cypress/reports/integration/public/screenshots/E2E/Registration/register1.js/register -- Can register a new a user (failed).png",
+                      "name": "register -- Can register a new a user (failed).png",
+                      "size": 97450,
+                      "extension": ".png",
+                      "type": "file"
+                    }
+                  ],
+                  "size": 97450,
+                  "type": "directory"
+                }
+              ],
+              "size": 97450,
+              "type": "directory"
+            }
+          ],
+          "size": 97450,
+          "type": "directory"
+        }
+      ],
+      "size": 97450,
+      "type": "directory"
     },
     {
       "path": "cypress/reports/integration/public/videos",
       "name": "videos",
       "children": [
         {
+          "path": "cypress/reports/integration/public/videos/API",
+          "name": "API",
+          "children": [
+            {
+              "path": "cypress/reports/integration/public/videos/API/user.js.mp4",
+              "name": "user.js.mp4",
+              "size": 183186,
+              "extension": ".mp4",
+              "type": "file"
+            }
+          ],
+          "size": 183186,
+          "type": "directory"
+        },
+        {
+          "path": "cypress/reports/integration/public/videos/E2E",
+          "name": "E2E",
+          "children": [
+            {
+              "path": "cypress/reports/integration/public/videos/E2E/Helpers",
+              "name": "Helpers",
+              "children": [
+                {
+                  "path": "cypress/reports/integration/public/videos/E2E/Helpers/registration.js.mp4",
+                  "name": "registration.js.mp4",
+                  "size": 86255,
+                  "extension": ".mp4",
+                  "type": "file"
+                }
+              ],
+              "size": 86255,
+              "type": "directory"
+            },
+            {
+              "path": "cypress/reports/integration/public/videos/E2E/Registration",
+              "name": "Registration",
+              "children": [
+                {
+                  "path": "cypress/reports/integration/public/videos/E2E/Registration/register1.js.mp4",
+                  "name": "register1.js.mp4",
+                  "size": 276424,
+                  "extension": ".mp4",
+                  "type": "file"
+                }
+              ],
+              "size": 276424,
+              "type": "directory"
+            }
+          ],
+          "size": 362679,
+          "type": "directory"
+        },
+        {
           "path": "cypress/reports/integration/public/videos/test-spec.js.mp4",
           "name": "test-spec.js.mp4",
-          "size": 126341,
+          "size": 111085,
           "extension": ".mp4",
           "type": "file"
         }
       ],
-      "size": 126341,
+      "size": 656950,
       "type": "directory"
     }
   ],
-  "size": 832858,
+  "size": 1473434,
   "type": "directory"
 }

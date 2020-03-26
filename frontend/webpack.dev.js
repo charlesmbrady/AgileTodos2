@@ -12,9 +12,9 @@ module.exports = merge(common, {
     // hotOnly: true,
     historyApiFallback: true,
     proxy: {
-      '/': {
-        target: 'http://localhost:8080'
-      },
+      // '/': {
+      //   target: 'http://localhost:8080'
+      // },
       '/api': {
         target: 'http://localhost:8080/'
         //   pathRewrite: { '^/api': '' }

@@ -8,14 +8,19 @@ const moment = require('moment');
 // Defining methods for the usersController
 module.exports = {
   register: function(req, res) {
-    //signup
-
-    const { email, password, firstName, lastName } = req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordConfirmation
+    } = req.body;
     db.User.create({
       firstName,
       lastName,
       email,
-      password
+      password,
+      passwordConfirmation
     })
       .then(result => {
         res.json(result);
@@ -61,7 +66,18 @@ module.exports = {
     };
     res.status(200).send(user);
   },
-  getUser: function(req, res) {},
+  getUser: function(req, res) {
+    db.find({
+      where: {
+        id: req.params.id
+      }
+    }).then((user, err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.status(200).send(user);
+    });
+  },
   getUsers: function(req, res) {
     db.User.findAll({})
       .then(data => {
@@ -75,15 +91,19 @@ module.exports = {
     res.clearCookie('token');
     res.send('cookie cleared');
   },
-  updateUser: function(req, res) {
-    const id = req.params.id;
-    const update = req.body;
-    const options = {
-      new: true
-    };
-
-    db.User.findByIdAndUpdate(id, update, options).then(updatedUser => {
-      res.json(updatedUser);
+  update: function(req, res) {
+    db.User.update(user, {
+      where: {
+        id: req.params.id
+      }
     });
+  },
+  delete: async function(req, res) {
+    await db.User.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    res.status(200).send({ message: 'Successfully deleted the user.' });
   }
 };

@@ -5,20 +5,17 @@ import './style.css';
 
 //********** Pages/Components **********//
 import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Registration from './Pages/Registration';
 
 export default function App() {
   return (
     <Router>
       <div className='App'>
         <Switch>
-          <Route exact path='/Home'>
-            {/* component here */}
-            <Home />
-          </Route>
+          <Route exact path='/registration' component={Registration}></Route>
 
-          <Route path='/'>
-            <Home />
-          </Route>
+          <Route path='/' component={Login} />
         </Switch>
       </div>
     </Router>

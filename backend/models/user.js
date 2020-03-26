@@ -11,26 +11,32 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true
       },
       firstName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        len: [2, 20],
+        trim: true
       },
       lastName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        len: [1, 30],
+        trim: true
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: {
           args: true,
-          msg: 'User already exists'
-        }
+          msg: 'That email is already in use.'
+        },
+        len: [2, 30],
+        trim: true
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
-      },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+        allowNull: false,
+        len: [7, 30],
+        trim: true
       }
     },
     {
