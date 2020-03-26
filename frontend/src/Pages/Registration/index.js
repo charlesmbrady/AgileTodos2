@@ -40,7 +40,7 @@ export default function Registration() {
             type='text'
             id='first-name'
             data-test='registration-input-first-name'
-            placeholder='Enter first-name'
+            placeholder='Enter first name'
             name='firstName'
             value={user.firstName}
             onChange={e => userUpdate(e.target.name, e.target.value)}
@@ -51,13 +51,13 @@ export default function Registration() {
         </div>
         <div className='form-control'>
           <label for='last-name' data-test='registration-label-last-name'>
-            First Name
+            Last Name
           </label>
           <input
             type='text'
             id='last-name'
             data-test='registration-input-last-name'
-            placeholder='Enter last-name'
+            placeholder='Enter last name'
             name='lastName'
             value={user.lastName}
             onChange={e => userUpdate(e.target.name, e.target.value)}

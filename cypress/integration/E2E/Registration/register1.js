@@ -8,16 +8,16 @@ describe('register', function() {
   });
 
   it('Can register a new a user', function() {
-    const firstName = 'Need to make a random name';
-    const lastName = 'Need to make a random last';
-    const email = 'Need to make a random email';
-    const password = 'Need to make a random password';
+    const firstName = 'Charles';
+    const lastName = 'Brady';
+    const email = 'theGoat@gmail.com';
+    const password = 'Password1!';
 
     cy.visit('/registration');
 
     // Fill out form
     cy.get(Registration.FIRST_NAME).type(firstName);
-    // cy.get(Registration.LAST_NAME).type(lastName);
+    cy.get(Registration.LAST_NAME).type(lastName);
     cy.get(Registration.EMAIL).type(email);
     cy.get(Registration.PASSWORD).type(password);
     cy.get(Registration.PASSWORD_CONFIRMATION).type(password);
