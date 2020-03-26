@@ -25,5 +25,10 @@ export default {
     return axios.delete(`/auth/user/${id}`).catch(err => {
       throw err;
     });
+  },
+  authenticate: function(user) {
+    return axios.post(`/auth/authenticate`, user).catch(err => {
+      throw err;
+    });
   }
 };

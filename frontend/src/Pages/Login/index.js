@@ -34,7 +34,7 @@ export default function Login() {
   return (
     <div className='container'>
       {renderRedirect()}
-      <form id='form' className='form'>
+      <form id='form' className='form' onSubmit={e => e.preventDefault()}>
         <h2 data-test='header'>Login</h2>
         <div className='form-control'>
           <label for='email' data-test='label-email'>
@@ -45,8 +45,8 @@ export default function Login() {
             id='email'
             data-test='input-email'
             placeholder='Enter email'
-            name='firstName'
-            value={user.firstName}
+            name='email'
+            value={user.email}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small className='error' data-test='error-email'>
@@ -62,8 +62,8 @@ export default function Login() {
             id='password'
             data-test='input-password'
             placeholder='Enter password'
-            name='firstName'
-            value={user.firstName}
+            name='password'
+            value={user.password}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small className='error' data-test='error-password'>
