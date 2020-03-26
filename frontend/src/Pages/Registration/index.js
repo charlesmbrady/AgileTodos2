@@ -22,7 +22,7 @@ export default function Registration() {
 
   const submitNewUser = user => {
     API.createUser(user).then(res => {
-      if (res) {
+      if (res.status === 200) {
         console.log(res.data);
         setRedirect(true);
       }

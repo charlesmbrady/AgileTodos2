@@ -31,8 +31,8 @@ module.exports = {
       });
   },
   authenticate: function(req, res) {
-    const { username, password } = req.body;
-    db.User.findOne({ username }).then(userMatch => {
+    const { password } = req.body;
+    db.User.find({ where: { id: req.body.id } }).then(userMatch => {
       //check username
       if (!userMatch) {
         res.status(401).json({ message: 'Error: Invalid username' });
@@ -43,10 +43,10 @@ module.exports = {
         res.status(401).json({ message: 'Error: Incorrect password' });
       } else {
         const payload = {
-          username: userMatch.username,
+          email: userMatch.email,
           firstName: userMatch.firstName,
           lastName: userMatch.lastName,
-          _id: userMatch._id
+          id: userMatch.id
         };
         const signOptions = {
           expiresIn: '2h'
@@ -58,11 +58,11 @@ module.exports = {
   },
   checkToken: function(req, res) {
     const decoded = jwt.decode(req.cookies.token);
-    const name = decoded.username;
     const user = {
       firstName: decoded.firstName,
       lastName: decoded.lastName,
-      id: decoded._id
+      email: decoded.email,
+      id: decoded.id
     };
     res.status(200).send(user);
   },
