@@ -23,6 +23,6 @@ describe('register', function() {
     cy.get(Registration.PASSWORD_CONFIRMATION).type(password);
 
     // Submit
-    cy.get('.submit').click();
+    cy.get(Registration.SUBMIT).click();
   });
 });
