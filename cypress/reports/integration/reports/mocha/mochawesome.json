@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 1,
-    "start": "2020-03-26T05:20:04.648Z",
-    "end": "2020-03-26T05:20:05.675Z",
-    "duration": 1027,
+    "start": "2020-03-26T19:29:45.123Z",
+    "end": "2020-03-26T19:29:46.240Z",
+    "duration": 1117,
     "testsRegistered": 2,
     "passPercent": 50,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "edbcce45-d3fe-449c-88a9-7ee9b33cba94",
+      "uuid": "bcdb6709-5904-46c2-8489-26e58deb01ae",
       "title": "",
       "fullFile": "cypress/integration/API/user.js",
       "file": "cypress/integration/API/user.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "de4512a4-5f4c-49ec-a985-91c10c1bab5e",
+          "uuid": "46894205-a132-4235-90da-76e845221a2b",
           "title": "API Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "POST /auth/register - create new user",
               "fullTitle": "API Tests POST /auth/register - create new user",
               "timedOut": null,
-              "duration": 186,
+              "duration": 204,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'The',\n  lastName: 'Goat',\n  email: 'theGoat@GOAT.com',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  expect(response.body).to.have.property('firstName', 'The'); // true\n  cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id));\n});",
               "err": {},
-              "uuid": "babbad68-9b40-4845-ae75-c7efe79385df",
-              "parentUUID": "de4512a4-5f4c-49ec-a985-91c10c1bab5e",
+              "uuid": "8ac9698a-19bb-4aaf-bc74-6b17508f9f1d",
+              "parentUUID": "46894205-a132-4235-90da-76e845221a2b",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "PUT /auth/user/:id - update a user",
               "fullTitle": "API Tests PUT /auth/user/:id - update a user",
               "timedOut": null,
-              "duration": 449,
+              "duration": 448,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -69,22 +69,22 @@
                 "estack": "AssertionError: expected undefined to equal 'anewname'\n    at getRet (http://localhost:8081/__cypress/runner/cypress_runner.js:125261:16)\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:8081/__cypress/runner/cypress_runner.js:162740:29)\n    at Context.thenFn (http://localhost:8081/__cypress/runner/cypress_runner.js:125275:23)\n    at Context.then (http://localhost:8081/__cypress/runner/cypress_runner.js:125647:21)\n    at Context.<anonymous> (http://localhost:8081/__cypress/runner/cypress_runner.js:137585:21)\n    at http://localhost:8081/__cypress/runner/cypress_runner.js:137061:33\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Promise._settlePromiseFromHandler (http://localhost:8081/__cypress/runner/cypress_runner.js:163401:31)\n    at Promise._settlePromise (http://localhost:8081/__cypress/runner/cypress_runner.js:163458:18)\n    at Promise._settlePromiseCtx (http://localhost:8081/__cypress/runner/cypress_runner.js:163495:10)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueue (http://localhost:8081/__cypress/runner/cypress_runner.js:160195:12)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160200:10)\n    at Async.drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160074:14)",
                 "diff": null
               },
-              "uuid": "e1a38704-c0c7-4395-bc23-64b82c70dcd4",
-              "parentUUID": "de4512a4-5f4c-49ec-a985-91c10c1bab5e",
+              "uuid": "586564f0-24d6-4ab9-80be-b6d1ea586d13",
+              "parentUUID": "46894205-a132-4235-90da-76e845221a2b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "babbad68-9b40-4845-ae75-c7efe79385df"
+            "8ac9698a-19bb-4aaf-bc74-6b17508f9f1d"
           ],
           "failures": [
-            "e1a38704-c0c7-4395-bc23-64b82c70dcd4"
+            "586564f0-24d6-4ab9-80be-b6d1ea586d13"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 635,
+          "duration": 652,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

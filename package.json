@@ -9,7 +9,7 @@
     "start:coverage": "run-p start:client start:server:coverage",
     "start:client": "cd frontend && yarn start-dev",
     "start:server": "nodemon backend/server.js",
-    "start:server:coverage": "cd backend && yarn start:coverage",
+    "start:server:coverage": "./node_modules/.bin/nyc --silent node backend/server.js",
     "cypress:open": "cypress open -C cypress.local.json",
     "cypress:run": "cypress run",
     "cypress:test": "cypress run -s 'cypress/integration/**/*-spec.js'",
