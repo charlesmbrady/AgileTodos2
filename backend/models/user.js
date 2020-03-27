@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-// const { sequelize, DataTypes } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -72,6 +71,11 @@ module.exports = (sequelize, DataTypes) => {
     const values = Object.assign({}, this.get());
     // delete values.password;
     return values;
+  };
+
+  // User.hasMany(Todo);
+  User.associate = models => {
+    User.hasMany(models.Sprint, {});
   };
 
   return User;

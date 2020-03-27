@@ -4,11 +4,7 @@ import API from '../../Utilities/API';
 import Sprint from '../../Components/Sprint/index.js';
 
 export default function Dashboard() {
-  const [sprints, setSprints] = useState([
-    { name: 'alpha' },
-    { name: 'bravo' },
-    { name: 'charlie' }
-  ]);
+  const [sprints, setSprints] = useState([]);
 
   const maps = [{ name: 'alpha' }, { name: 'bravo' }, { name: 'charlie' }];
 

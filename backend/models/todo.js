@@ -22,5 +22,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  // Todo.belongsTo(Sprint);
+  Todo.associate = models => {
+    Todo.belongsTo(models.Sprint, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  Todo.associate = models => {
+    Todo.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Todo;
 };
