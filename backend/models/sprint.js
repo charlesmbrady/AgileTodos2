@@ -24,16 +24,17 @@ module.exports = (sequelize, DataTypes) => {
 
   // Sprint.belongsTo(User);
   Sprint.associate = models => {
-    Sprint.hasMany(models.Todos, {});
-  };
-
-  Sprint.associate = models => {
+    Sprint.hasMany(models.Todo, {});
     Sprint.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
   };
+
+  // Sprint.associate = models => {
+
+  // };
 
   return Sprint;
 };

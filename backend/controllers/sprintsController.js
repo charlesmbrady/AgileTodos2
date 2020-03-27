@@ -2,7 +2,7 @@ const db = require('../models');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser'); // for the auth token
 
-// Defining methods for the usersController
+// Defining methods for the sprintsController
 module.exports = {
   create: function(req, res) {
     db.Sprint.create(req.body)
@@ -11,7 +11,6 @@ module.exports = {
       })
       .catch(err => {
         res.json(err);
-        console.log('ERROR: ' + err.errors[0].message);
       });
   },
   getById: function(req, res) {
@@ -20,14 +19,20 @@ module.exports = {
 
     db.Sprint.findAll({
       where: {
-        user_id: user.id
-      }
+        UserId: user.id
+      },
+      include: [
+        {
+          model: db.Todo
+        }
+      ]
     }).then((dbSprints, err) => {
       if (err) {
         res.status(500).send(err);
       }
-      const dbSprint = dbSprints.filter(sprint => sprint.id === req.params.id);
-      res.json(dbSprint);
+      let newDbSprints = dbSprints.filter(sprint => sprint.id == req.params.id);
+
+      res.json(newDbSprints[0]);
     });
   },
   getAllForUser: function(req, res) {
@@ -36,8 +41,13 @@ module.exports = {
 
     db.Sprint.findAll({
       where: {
-        user_id: user.id
-      }
+        UserId: user.id
+      },
+      include: [
+        {
+          model: db.Todo
+        }
+      ]
     }).then((dbSprints, err) => {
       if (err) {
         res.status(500).send(err);
@@ -51,14 +61,19 @@ module.exports = {
 
     db.Sprint.findAll({
       where: {
-        user_id: user.id
-      }
+        UserId: user.id
+      },
+      include: [
+        {
+          model: db.Todo
+        }
+      ]
     }).then((dbSprints, err) => {
       if (err) {
         res.status(500).send(err);
       }
-      const dbSprint = dbSprints.filter(sprint => sprint.id === req.params.id);
-      if (dbSprint) {
+      dbSprints.filter(sprint => sprint.id == req.params.id);
+      if (dbSprints[0]) {
         db.Sprint.update(req.body, {
           where: {
             id: req.params.id
@@ -76,14 +91,14 @@ module.exports = {
   deleteById: async function(req, res) {
     db.Sprint.findAll({
       where: {
-        user_id: user.id
+        UserId: user.id
       }
     }).then((dbSprints, err) => {
       if (err) {
         res.status(500).send(err);
       }
-      const dbSprint = dbSprints.filter(sprint => sprint.id === req.params.id);
-      if (dbSprint) {
+      dbSprints.filter(sprint => sprint.id == req.params.id);
+      if (dbSprints[0]) {
         db.Sprint.destroy({
           where: {
             id: req.params.id

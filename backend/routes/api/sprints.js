@@ -2,12 +2,12 @@ const router = require('express').Router();
 const sprintsController = require('../../controllers/sprintsController');
 const withAuth = require('../../middleware.js');
 
-// Match with /api/sprints endpoint
+// Match with /api/sprint endpoint
 
 // CRUD
-router.post('/sprint', sprintsController.create);
-router.get('/sprint/:id', sprintsController.getById);
-router.put('/sprint/:id', sprintsController.updateById);
-router.delete('/sprint/:id', sprintsController.deleteById);
+router.post('/sprint', withAuth, sprintsController.create);
+router.get('/sprint/:id', withAuth, sprintsController.getById);
+router.put('/sprint/:id', withAuth, sprintsController.updateById);
+router.delete('/sprint/:id', withAuth, sprintsController.deleteById);
 
 module.exports = router;

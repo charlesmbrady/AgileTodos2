@@ -38,7 +38,7 @@ module.exports = {
       }
     }).then(userMatch => {
       //check username
-      if (!userMatch) {
+      if (!userMatch[0]) {
         res.status(401).json({ message: 'Error: Invalid username' });
       }
 
@@ -47,10 +47,10 @@ module.exports = {
         res.status(401).json({ message: 'Error: Incorrect password' });
       } else {
         const payload = {
-          email: userMatch.email,
-          firstName: userMatch.firstName,
-          lastName: userMatch.lastName,
-          id: userMatch.id
+          email: userMatch[0].email,
+          firstName: userMatch[0].firstName,
+          lastName: userMatch[0].lastName,
+          id: userMatch[0].id
         };
         const signOptions = {
           expiresIn: '2h'

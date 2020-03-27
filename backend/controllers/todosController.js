@@ -2,7 +2,7 @@ const db = require('../models');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser'); // for the auth token
 
-// Defining methods for the usersController
+// Defining methods for the todosController
 module.exports = {
   create: function(req, res) {
     db.Todo.create(req.body)
@@ -11,7 +11,6 @@ module.exports = {
       })
       .catch(err => {
         res.json(err);
-        console.log('ERROR: ' + err.errors[0].message);
       });
   },
   getById: function(req, res) {
@@ -20,14 +19,14 @@ module.exports = {
 
     db.Todo.findAll({
       where: {
-        user_id: user.id
+        UserId: user.id
       }
     }).then((dbTodos, err) => {
       if (err) {
         res.status(500).send(err);
       }
-      const dbTodo = dbTodos.filter(todo => todo.id === req.params.id);
-      res.json(dbTodo);
+      dbTodos.filter(todo => todo.id == req.params.id);
+      res.json(dbTodos[0]);
     });
   },
   getAllForUser: function(req, res) {
@@ -36,7 +35,7 @@ module.exports = {
 
     db.Todo.findAll({
       where: {
-        user_id: user.id
+        UserId: user.id
       }
     }).then((dbTodos, err) => {
       if (err) {
@@ -51,14 +50,14 @@ module.exports = {
 
     db.Todo.findAll({
       where: {
-        user_id: user.id
+        UserId: user.id
       }
     }).then((dbTodos, err) => {
       if (err) {
         res.status(500).send(err);
       }
-      const dbTodo = dbTodos.filter(todo => todo.id === req.params.id);
-      if (dbTodo) {
+      dbTodos.filter(todo => todo.id == req.params.id);
+      if (dbTodos[0]) {
         db.Todo.update(req.body, {
           where: {
             id: req.params.id
@@ -76,15 +75,15 @@ module.exports = {
   deleteById: async function(req, res) {
     db.Todo.findAll({
       where: {
-        user_id: user.id
+        UserId: user.id
       }
     }).then((dbTodos, err) => {
       if (err) {
         res.status(500).send(err);
       }
-      const dbTodo = dbTodos.filter(todo => todo.id === req.params.id);
-      if (dbTodo) {
-        db.Todo.destroy({
+      dbTodos.filter(todo => todo.id == req.params.id);
+      if (dbTodos[0]) {
+        db.Sprint.destroy({
           where: {
             id: req.params.id
           }
