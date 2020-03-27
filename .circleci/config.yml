@@ -70,8 +70,13 @@ jobs:
     <<: *defaults
 
     steps:
-      - attach_workspace:
-          at: ~/
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: yarn
+      - run:
+          name: Install frontend dependencies
+          command: cd frontend && yarn
       - run:
           name: start frontend
           command: cd frontend && yarn start
