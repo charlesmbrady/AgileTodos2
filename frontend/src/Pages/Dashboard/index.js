@@ -2,11 +2,10 @@ import './style.css';
 import React from 'react';
 import API from '../../Utilities/API';
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <div>
-      <h1>Homepage</h1>
-      <button onClick={() => healthcheck()}>ping</button>
+      <h1>Dashboard</h1>
     </div>
   );
 }

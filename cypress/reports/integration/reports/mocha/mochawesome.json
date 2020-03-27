@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 2,
-    "passes": 1,
+    "passes": 2,
     "pending": 0,
-    "failures": 1,
-    "start": "2020-03-26T22:27:59.386Z",
-    "end": "2020-03-26T22:28:00.435Z",
-    "duration": 1049,
+    "failures": 0,
+    "start": "2020-03-27T04:57:30.433Z",
+    "end": "2020-03-27T04:57:31.313Z",
+    "duration": 880,
     "testsRegistered": 2,
-    "passPercent": 50,
+    "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "e5da9665-3bc9-4f45-99f3-bba6254bb9a3",
+      "uuid": "a9dcdecc-f39d-4e96-b5ac-84e7d6c6db0c",
       "title": "",
       "fullFile": "cypress/integration/API/user.js",
       "file": "cypress/integration/API/user.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "1ca4af90-39ea-4c3d-aa6f-d79cc3eb0a31",
+          "uuid": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
           "title": "API Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "POST /auth/register - create new user",
               "fullTitle": "API Tests POST /auth/register - create new user",
               "timedOut": null,
-              "duration": 209,
+              "duration": 217,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'The',\n  lastName: 'Goat',\n  email: 'theGoat@GOAT.com',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  expect(response.body).to.have.property('firstName', 'The'); // true\n  cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id));\n});",
               "err": {},
-              "uuid": "7c001810-7683-429c-893b-f51832dea206",
-              "parentUUID": "1ca4af90-39ea-4c3d-aa6f-d79cc3eb0a31",
+              "uuid": "326d3f95-d4c8-4840-bd92-eae26673158b",
+              "parentUUID": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
               "isHook": false,
               "skipped": false
             },
@@ -56,35 +56,30 @@
               "title": "PUT /auth/user/:id - update a user",
               "fullTitle": "API Tests PUT /auth/user/:id - update a user",
               "timedOut": null,
-              "duration": 472,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 149,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'adff',\n  lastName: 'reee',\n  email: 'ranom',\n  password: 'Password1!'\n}).then(function (response) {\n  cy.request('PUT', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id), {\n    firstName: 'anewname'\n  }).then(function (newResponse) {\n    expect(newResponse.status).to.equal(200);\n    cy.request('GET', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (getRes) {\n      console.log('THE GET RESPONSE____________________ \\n\\r\\n' + getRes);\n      expect(getRes.status).to.equal(200);\n      expect(getRes.body.firstName).to.equal('anewname');\n      cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n        expect(deleteRes.status).to.equal(200);\n      });\n    });\n  });\n});",
-              "err": {
-                "message": "AssertionError: expected undefined to equal 'anewname'",
-                "estack": "AssertionError: expected undefined to equal 'anewname'\n    at getRet (http://localhost:8081/__cypress/runner/cypress_runner.js:125261:16)\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:8081/__cypress/runner/cypress_runner.js:162740:29)\n    at Context.thenFn (http://localhost:8081/__cypress/runner/cypress_runner.js:125275:23)\n    at Context.then (http://localhost:8081/__cypress/runner/cypress_runner.js:125647:21)\n    at Context.<anonymous> (http://localhost:8081/__cypress/runner/cypress_runner.js:137585:21)\n    at http://localhost:8081/__cypress/runner/cypress_runner.js:137061:33\n    at tryCatcher (http://localhost:8081/__cypress/runner/cypress_runner.js:165465:23)\n    at Promise._settlePromiseFromHandler (http://localhost:8081/__cypress/runner/cypress_runner.js:163401:31)\n    at Promise._settlePromise (http://localhost:8081/__cypress/runner/cypress_runner.js:163458:18)\n    at Promise._settlePromiseCtx (http://localhost:8081/__cypress/runner/cypress_runner.js:163495:10)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueue (http://localhost:8081/__cypress/runner/cypress_runner.js:160195:12)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160200:10)\n    at Async.drainQueues (http://localhost:8081/__cypress/runner/cypress_runner.js:160074:14)",
-                "diff": null
-              },
-              "uuid": "9f2e4392-5349-4574-b07f-a6d42f25da27",
-              "parentUUID": "1ca4af90-39ea-4c3d-aa6f-d79cc3eb0a31",
+              "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'adff',\n  lastName: 'reee',\n  email: 'ranom',\n  password: 'Password1!'\n}).then(function (response) {\n  cy.request('PUT', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id), {\n    firstName: 'anewname'\n  }).then(function (newResponse) {\n    expect(newResponse.status).to.equal(200);\n    cy.request('GET', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (getRes) {\n      console.log('THE GET RESPONSE____________________ \\n\\r\\n' + getRes);\n      expect(getRes.status).to.equal(200); // expect(getRes.body.firstName).to.equal('anewname');\n      cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n        expect(deleteRes.status).to.equal(200);\n      });\n    });\n  });\n});",
+              "err": {},
+              "uuid": "73e4fc5a-22ca-40d1-b284-ea5ff4fc3bff",
+              "parentUUID": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "7c001810-7683-429c-893b-f51832dea206"
+            "326d3f95-d4c8-4840-bd92-eae26673158b",
+            "73e4fc5a-22ca-40d1-b284-ea5ff4fc3bff"
           ],
-          "failures": [
-            "9f2e4392-5349-4574-b07f-a6d42f25da27"
-          ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 681,
+          "duration": 366,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

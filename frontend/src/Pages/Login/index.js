@@ -42,7 +42,7 @@ export default function Login() {
           <input
             type='text'
             id='email'
-            data-test='input-email'
+            data-test='login-input-email'
             placeholder='Enter email'
             name='email'
             value={user.email}
@@ -59,7 +59,7 @@ export default function Login() {
           <input
             type='password'
             id='password'
-            data-test='input-password'
+            data-test='login-input-password'
             placeholder='Enter password'
             name='password'
             value={user.password}
@@ -71,7 +71,7 @@ export default function Login() {
         </div>
         <button
           type='submit'
-          data-test='submit-button'
+          data-test='login-submit-button'
           onClick={() => authenticateUser(user)}
         >
           Submit
