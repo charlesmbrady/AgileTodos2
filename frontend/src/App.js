@@ -4,21 +4,19 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './style.css';
 
 //********** Pages/Components **********//
-import Home from './Pages/Home';
+import Dashboard from './Pages/Dashboard';
+import Login from './Pages/Login';
+import Registration from './Pages/Registration';
 
 export default function App() {
   return (
     <Router>
       <div className='App'>
         <Switch>
-          <Route exact path='/Home'>
-            {/* component here */}
-            <Home />
-          </Route>
+          <Route exact path='/registration' component={Registration}></Route>
+          <Route exact path='/dashboard' component={Dashboard}></Route>
 
-          <Route path='/'>
-            <Home />
-          </Route>
+          <Route path='/' component={Login} />
         </Switch>
       </div>
     </Router>

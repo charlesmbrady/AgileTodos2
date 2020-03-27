@@ -6,13 +6,28 @@ export default {
       throw err;
     });
   },
-  checkDatabase: function() {
-    return axios.get('/auth/users').catch(err => {
+  updateUser: function(user) {
+    return axios.put(`/auth/user/${user.id}`, user).catch(err => {
       throw err;
     });
   },
-  createUser: function() {
-    return axios.post('/auth/users').catch(err => {
+  getUser: function(id) {
+    return axios.get(`/auth/user/${id}`).catch(err => {
+      throw err;
+    });
+  },
+  createUser: function(user) {
+    return axios.post('/auth/user', user).catch(err => {
+      throw err;
+    });
+  },
+  deleteUser: function(id) {
+    return axios.delete(`/auth/user/${id}`).catch(err => {
+      throw err;
+    });
+  },
+  authenticate: function(user) {
+    return axios.post(`/auth/authenticate`, user).catch(err => {
       throw err;
     });
   }

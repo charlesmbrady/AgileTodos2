@@ -1,5 +1,5 @@
 {
-  "name": "AgileTodos",
+  "name": "AgileTodos2",
   "version": "1.0.0",
   "description": "This project is a fullstack javascript application built with Charles' MERN template",
   "main": "backend/server.js",
@@ -8,8 +8,8 @@
     "start-dev": "run-p start:client start:server",
     "start:coverage": "run-p start:client start:server:coverage",
     "start:client": "cd frontend && yarn start-dev",
-    "start:server": "node backend/server.js",
-    "start:server:coverage": "cd backend && yarn start:coverage",
+    "start:server": "nodemon backend/server.js",
+    "start:server:coverage": "./node_modules/.bin/nyc --silent node backend/server.js",
     "cypress:open": "cypress open -C cypress.local.json",
     "cypress:run": "cypress run",
     "cypress:test": "cypress run -s 'cypress/integration/**/*-spec.js'",
@@ -76,7 +76,7 @@
   "devDependencies": {
     "@cypress/code-coverage": "^1.14.0",
     "cy-report-setup-helper": "^1.3.4",
-    "cypress": "^4.0.1",
+    "cypress": "^4.2.0",
     "directory-tree": "^2.2.4",
     "istanbul-lib-coverage": "^3.0.0",
     "json-beautify": "^1.1.1",
