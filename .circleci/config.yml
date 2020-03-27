@@ -12,7 +12,7 @@ defaults: &defaults
         TEST_DATABASE_URL: mysql://root@localhost/circle_test
     - image: cypress/base:8
 
-  working_directory: ~/MERNolithic_sql
+  working_directory: ~/AgileTodos2
 
 version: 2
 jobs:
@@ -75,13 +75,11 @@ jobs:
       - run:
           name: Run cypress tests
           command: |
-            sudo apt-get update
-            sudo apt-get install libxtst6
-            yarn test:create-reports
-      - store_artifacts:
-          path: coverage/lcov-report
-      - store_artifacts:
-          path: cypress/reports/integration/public/
+            yarn test:local:test-and-report
+      # - store_artifacts:
+      #     path: coverage/lcov-report
+      # - store_artifacts:
+      #     path: cypress/reports/integration/public/
       # - store_artifacts:
       #     path: cypress/reports/integration/public/videos
       # - store_artifacts:
@@ -118,9 +116,9 @@ workflows:
       # - coverage_test:
       #     requires:
       #       - build
-      # - cypress_tests:
-      #     requires:
-      #       - build
+      - cypress_tests:
+          requires:
+            - build
       # - js_unit_tests:
       #     requires:
       #       - build
