@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   test: {
-    // use_env_variable: 'TEST_DATABASE_URL', //add this back if I try to use the coverage tests in CI again
+    use_env_variable: 'TEST_DATABASE_URL', //add this back if I try to use the coverage tests in CI again
     username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: 'agiletodos2_test',
