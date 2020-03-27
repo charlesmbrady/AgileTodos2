@@ -32,7 +32,7 @@ export default {
     });
   },
   getSprints: function() {
-    return axios.get(`/api/sprint`).catch(err => {
+    return axios.get(`/api/sprints`).catch(err => {
       throw err;
     });
   },

@@ -7,12 +7,14 @@ export default function Dashboard() {
   const [sprints, setSprints] = useState([]);
   const [todos, setTodos] = useState([]);
 
-  const getSprints = async () => await API.getAllSprints();
-  const getTodos = async () => await API.getAllSprints();
+  useEffect(async () => {
+    API.getSprints().then(res => {
+      console.log(res);
+      setSprints(res);
+    });
 
-  useEffect(() => {
-    setSprints(getSprints);
-    setTodos(getTodos);
+    // setSprints(sprintsRes);
+    // setTodos(todosRes);
   }, []);
 
   return (
