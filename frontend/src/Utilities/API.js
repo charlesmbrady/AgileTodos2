@@ -40,5 +40,10 @@ export default {
     return axios.get(`/api/todo`).catch(err => {
       throw err;
     });
+  },
+  createSprint: function(sprint) {
+    return axios.post(`/api/sprint`, sprint).catch(err => {
+      throw err;
+    });
   }
 };

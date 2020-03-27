@@ -112,12 +112,12 @@
             {
               "path": "cypress/reports/integration/public/videos/API/user.js.mp4",
               "name": "user.js.mp4",
-              "size": 122884,
+              "size": 123642,
               "extension": ".mp4",
               "type": "file"
             }
           ],
-          "size": 122884,
+          "size": 123642,
           "type": "directory"
         },
         {
@@ -131,19 +131,19 @@
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Helpers/login.js.mp4",
                   "name": "login.js.mp4",
-                  "size": 84673,
+                  "size": 84689,
                   "extension": ".mp4",
                   "type": "file"
                 },
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Helpers/registration.js.mp4",
                   "name": "registration.js.mp4",
-                  "size": 67306,
+                  "size": 80038,
                   "extension": ".mp4",
                   "type": "file"
                 }
               ],
-              "size": 151979,
+              "size": 164727,
               "type": "directory"
             },
             {
@@ -153,37 +153,37 @@
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Registration/login.js.mp4",
                   "name": "login.js.mp4",
-                  "size": 552405,
+                  "size": 621139,
                   "extension": ".mp4",
                   "type": "file"
                 },
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Registration/registerUser.js.mp4",
                   "name": "registerUser.js.mp4",
-                  "size": 147830,
+                  "size": 153477,
                   "extension": ".mp4",
                   "type": "file"
                 }
               ],
-              "size": 700235,
+              "size": 774616,
               "type": "directory"
             }
           ],
-          "size": 852214,
+          "size": 939343,
           "type": "directory"
         },
         {
           "path": "cypress/reports/integration/public/videos/test-spec.js.mp4",
           "name": "test-spec.js.mp4",
-          "size": 118710,
+          "size": 117244,
           "extension": ".mp4",
           "type": "file"
         }
       ],
-      "size": 1093808,
+      "size": 1180229,
       "type": "directory"
     }
   ],
-  "size": 1816737,
+  "size": 1903158,
   "type": "directory"
 }

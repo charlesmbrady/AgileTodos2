@@ -5,7 +5,11 @@ const cookieParser = require('cookie-parser'); // for the auth token
 // Defining methods for the sprintsController
 module.exports = {
   create: function(req, res) {
-    db.Sprint.create(req.body)
+    const decoded = jwt.decode(req.cookies.token);
+    const sprint = req.body;
+    sprint.UserId = decoded.id;
+
+    db.Sprint.create(sprint)
       .then(result => {
         res.json(result);
       })
