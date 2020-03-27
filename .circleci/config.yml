@@ -74,8 +74,7 @@ jobs:
           at: ~/
       - run:
           name: Run cypress tests
-          command: |
-            yarn test:local:test-and-report
+          command: yarn test:local:test-and-report
       # - store_artifacts:
       #     path: coverage/lcov-report
       # - store_artifacts:
