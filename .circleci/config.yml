@@ -73,8 +73,16 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
+          name: start frontend
+          command: cd frontend && yarn start
+          background: true
+      - run:
+        name: start backend
+        command: node backend/server.js
+        background: true
+      - run:
           name: Run cypress tests
-          command: yarn test:local:test-and-report
+          command: yarn cypress-test
       # - store_artifacts:
       #     path: coverage/lcov-report
       # - store_artifacts:
