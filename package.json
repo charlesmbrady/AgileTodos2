@@ -7,7 +7,7 @@
     "start": "node backend/server.js",
     "start-dev": "run-p start:client start:server",
     "start:coverage": "run-p start:client start:server:coverage",
-    "start:client": "cd frontend && yarn start-dev",
+    "start:client": "cd frontend && yarn start",
     "start:server": "nodemon backend/server.js",
     "start:server:coverage": "./node_modules/.bin/nyc --silent node backend/server.js",
     "cypress:open": "cypress open -C cypress.local.json",

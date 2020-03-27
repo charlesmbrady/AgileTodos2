@@ -83,21 +83,21 @@
     {
       "path": "cypress/reports/integration/public/report-tree-listing.json",
       "name": "report-tree-listing.json",
-      "size": 7241,
+      "size": 5914,
       "extension": ".json",
       "type": "file"
     },
     {
       "path": "cypress/reports/integration/public/report.html",
       "name": "report.html",
-      "size": 13503,
+      "size": 13505,
       "extension": ".html",
       "type": "file"
     },
     {
       "path": "cypress/reports/integration/public/report.json",
       "name": "report.json",
-      "size": 11629,
+      "size": 11631,
       "extension": ".json",
       "type": "file"
     },
@@ -112,12 +112,12 @@
             {
               "path": "cypress/reports/integration/public/videos/API/user.js.mp4",
               "name": "user.js.mp4",
-              "size": 119253,
+              "size": 122884,
               "extension": ".mp4",
               "type": "file"
             }
           ],
-          "size": 119253,
+          "size": 122884,
           "type": "directory"
         },
         {
@@ -131,19 +131,19 @@
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Helpers/login.js.mp4",
                   "name": "login.js.mp4",
-                  "size": 84753,
+                  "size": 84673,
                   "extension": ".mp4",
                   "type": "file"
                 },
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Helpers/registration.js.mp4",
                   "name": "registration.js.mp4",
-                  "size": 66310,
+                  "size": 67306,
                   "extension": ".mp4",
                   "type": "file"
                 }
               ],
-              "size": 151063,
+              "size": 151979,
               "type": "directory"
             },
             {
@@ -153,37 +153,37 @@
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Registration/login.js.mp4",
                   "name": "login.js.mp4",
-                  "size": 547006,
+                  "size": 552405,
                   "extension": ".mp4",
                   "type": "file"
                 },
                 {
                   "path": "cypress/reports/integration/public/videos/E2E/Registration/registerUser.js.mp4",
                   "name": "registerUser.js.mp4",
-                  "size": 164590,
+                  "size": 147830,
                   "extension": ".mp4",
                   "type": "file"
                 }
               ],
-              "size": 711596,
+              "size": 700235,
               "type": "directory"
             }
           ],
-          "size": 862659,
+          "size": 852214,
           "type": "directory"
         },
         {
           "path": "cypress/reports/integration/public/videos/test-spec.js.mp4",
           "name": "test-spec.js.mp4",
-          "size": 120327,
+          "size": 118710,
           "extension": ".mp4",
           "type": "file"
         }
       ],
-      "size": 1102239,
+      "size": 1093808,
       "type": "directory"
     }
   ],
-  "size": 1826491,
+  "size": 1816737,
   "type": "directory"
 }

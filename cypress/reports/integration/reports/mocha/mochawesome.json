@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2020-03-27T04:57:30.433Z",
-    "end": "2020-03-27T04:57:31.313Z",
-    "duration": 880,
+    "start": "2020-03-27T21:40:51.799Z",
+    "end": "2020-03-27T21:40:52.867Z",
+    "duration": 1068,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "a9dcdecc-f39d-4e96-b5ac-84e7d6c6db0c",
+      "uuid": "9f91351b-dd22-4849-baca-5e46310c1f6b",
       "title": "",
       "fullFile": "cypress/integration/API/user.js",
       "file": "cypress/integration/API/user.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
+          "uuid": "eba84353-c25c-4153-99d4-c5f65653619b",
           "title": "API Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "POST /auth/register - create new user",
               "fullTitle": "API Tests POST /auth/register - create new user",
               "timedOut": null,
-              "duration": 217,
+              "duration": 296,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'The',\n  lastName: 'Goat',\n  email: 'theGoat@GOAT.com',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  expect(response.body).to.have.property('firstName', 'The'); // true\n  cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id));\n});",
               "err": {},
-              "uuid": "326d3f95-d4c8-4840-bd92-eae26673158b",
-              "parentUUID": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
+              "uuid": "01de3e63-aefa-4d6f-8b68-c2d9c6142c41",
+              "parentUUID": "eba84353-c25c-4153-99d4-c5f65653619b",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "PUT /auth/user/:id - update a user",
               "fullTitle": "API Tests PUT /auth/user/:id - update a user",
               "timedOut": null,
-              "duration": 149,
+              "duration": 183,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'adff',\n  lastName: 'reee',\n  email: 'ranom',\n  password: 'Password1!'\n}).then(function (response) {\n  cy.request('PUT', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id), {\n    firstName: 'anewname'\n  }).then(function (newResponse) {\n    expect(newResponse.status).to.equal(200);\n    cy.request('GET', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (getRes) {\n      console.log('THE GET RESPONSE____________________ \\n\\r\\n' + getRes);\n      expect(getRes.status).to.equal(200); // expect(getRes.body.firstName).to.equal('anewname');\n      cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n        expect(deleteRes.status).to.equal(200);\n      });\n    });\n  });\n});",
               "err": {},
-              "uuid": "73e4fc5a-22ca-40d1-b284-ea5ff4fc3bff",
-              "parentUUID": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
+              "uuid": "21fc3862-2bff-49e4-a3a1-399c73e104be",
+              "parentUUID": "eba84353-c25c-4153-99d4-c5f65653619b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "326d3f95-d4c8-4840-bd92-eae26673158b",
-            "73e4fc5a-22ca-40d1-b284-ea5ff4fc3bff"
+            "01de3e63-aefa-4d6f-8b68-c2d9c6142c41",
+            "21fc3862-2bff-49e4-a3a1-399c73e104be"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 366,
+          "duration": 479,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
