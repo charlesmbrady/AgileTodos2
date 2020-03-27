@@ -4,6 +4,7 @@
   "apiUrl": "http://localhost:8080",
   "env": {
     "coverageFolder": "coverage",
+    "coverage": "open",
     "codeCoverage": {
       "url": "http://localhost:8080/__coverage__"
     }
