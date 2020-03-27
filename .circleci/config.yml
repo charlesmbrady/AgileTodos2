@@ -77,9 +77,9 @@ jobs:
           command: cd frontend && yarn start
           background: true
       - run:
-        name: start backend
-        command: node backend/server.js
-        background: true
+          name: start backend
+          command: node backend/server.js
+          background: true
       - run:
           name: Run cypress tests
           command: yarn cypress-test
