@@ -30,5 +30,15 @@ export default {
     return axios.post(`/auth/authenticate`, user).catch(err => {
       throw err;
     });
+  },
+  getSprints: function() {
+    return axios.get(`/api/sprint`).catch(err => {
+      throw err;
+    });
+  },
+  getTodos: function() {
+    return axios.get(`/api/todo`).catch(err => {
+      throw err;
+    });
   }
 };
