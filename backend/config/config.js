@@ -1,6 +1,6 @@
 const path = require('path'); // Lets us use __dirname as the relative filepath from this file
 require('dotenv').config('../../.env');
-console.log(process.env.MYSQL_USER);
+console.log(process.env.TEST_DATABASE_URL);
 
 module.exports = {
   development: {

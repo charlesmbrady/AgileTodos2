@@ -3,6 +3,7 @@ require('dotenv').config(path.join(__dirname, '../.env'));
 const express = require('express'); // Require express
 const app = express(); // Make app with express
 const PORT = process.env.PORT || 8080; // Set port to .env or default
+console.log('Node env = ' + process.env.NODE_ENV);
 const db = require('./models/index.js'); // Require the database connection for server to access
 const routes = require('./routes'); // Require the routes to use for api endpoints
 const cookieParser = require('cookie-parser'); // for the auth token
@@ -41,7 +42,7 @@ app.use(function(err, req, res, next) {
 });
 
 const syncOptions = {
-  force: process.env.FORCE_SYNC === 'false'
+  force: process.env.FORCE_SYNC === 'true'
 };
 
 if (app.get('env') === 'test') {
