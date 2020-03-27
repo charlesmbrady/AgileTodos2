@@ -19,15 +19,14 @@ export default function Login() {
 
   const authenticateUser = user => {
     API.authenticate(user).then(res => {
-      if (res.status === 200) {
-        console.log(res.data);
+      if ((res.status = 200)) {
         setRedirect(true);
       }
     });
   };
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to='/' />;
+      return <Redirect to='/dashboard' />;
     }
   };
 
