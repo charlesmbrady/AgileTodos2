@@ -19,7 +19,7 @@ module.exports = () => {
     firstName: 'Charles',
     lastName: 'Brady',
     email: 'charlesmbrady@gmail.com',
-    password: 'password1!',
+    password: 'Password1!',
     isAdmin: false
   });
   db.Sprint.create({

@@ -7,13 +7,13 @@ export default function Dashboard() {
   const [sprints, setSprints] = useState([]);
   const [todos, setTodos] = useState([]);
 
-  const getSprints = await API.getAllSprints();
-  const getTodos = await API.getAllSprints();
-  
+  const getSprints = async () => await API.getAllSprints();
+  const getTodos = async () => await API.getAllSprints();
+
   useEffect(() => {
     setSprints(getSprints);
     setTodos(getTodos);
-  }, [])
+  }, []);
 
   return (
     <div className='Dashboard'>
