@@ -73,7 +73,7 @@ export default function Login() {
         <button
           type='submit'
           data-test='submit-button'
-          onClick={() => authenticateUser()}
+          onClick={() => authenticateUser(user)}
         >
           Submit
         </button>

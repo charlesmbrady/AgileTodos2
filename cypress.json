@@ -3,6 +3,7 @@
   "reporter": "./node_modules/mochawesome/src/mochawesome.js",
   "apiUrl": "http://localhost:8080",
   "env": {
+    "coverageFolder": "coverage",
     "codeCoverage": {
       "url": "http://localhost:8080/__coverage__"
     }

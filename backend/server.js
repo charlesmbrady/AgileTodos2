@@ -19,14 +19,6 @@ if (global.__coverage__) {
 app.use(cookieParser());
 app.use(routes); // Link routesx
 
-app.get('/healthcheck', (req, res) => {
-  res.send('App is running!');
-});
-
-// app.get('/api/healthcheck', (req, res) => {
-//   res.send('App is running!');
-// });
-
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
@@ -36,12 +28,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
   });
 }
-
-// if (process.env.NODE_ENV !== 'production') {
-//   app.get('/', (req, res) => {
-//     res.sendStatus(200);
-//   });
-// }
 
 // Error handler
 app.use(function(err, req, res, next) {
