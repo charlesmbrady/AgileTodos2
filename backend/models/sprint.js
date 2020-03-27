@@ -1,6 +1,3 @@
-const bcrypt = require('bcrypt');
-// const { sequelize, DataTypes } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
   const Sprint = sequelize.define('Sprint', {
     id: {
