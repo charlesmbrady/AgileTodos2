@@ -3,33 +3,53 @@ import React, { useState, useEffect } from 'react';
 import API from '../../Utilities/API';
 import Sprint from '../../Components/Sprint/index.js';
 import CreateSprint from './modals/CreateSprint';
-// import CreateTodo from './modals/CreateTodo';
+import CreateTodo from './modals/CreateTodo';
 // import EditTodo from './modals/EditTodo';
 
 export default function Dashboard() {
   const [sprints, setSprints] = useState(null);
   const [todos, setTodos] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   //Modals
   const [createSprintModal, setCreateSprintModal] = useState(false);
-  // const [createTodoModal, setCreateTodoModal] = useState(false);
+  const [createTodoModal, setCreateTodoModal] = useState(false);
   // const [editTodoModal] = useState(true);
 
   const toggleCreateSprintModal = () => {
     setCreateSprintModal(!createSprintModal);
   };
-  // const toggleCreateTodoModal = () => {
-  //   setCreateTodoModal(!createTodoModal);
-  // };
+  const toggleCreateTodoModal = () => {
+    setCreateTodoModal(!createTodoModal);
+  };
+
+  const apiCall = () => {
+    let temp = counter + 1;
+    setCounter(temp);
+  };
+
+  const removeTodo = todo => {
+    console.log('the todo id****** ' + todo.id);
+
+    API.removeTodo(todo).then(res => {
+      if (res) {
+        apiCall();
+      }
+    });
+  };
 
   useEffect(() => {
     API.getSprints().then(res => {
-      if (res.status == 200) {
-        console.log(res.data);
-        setSprints(res.data);
-      }
+      // if (res) {
+      setSprints(res.data);
+      // }
+      API.getTodos().then(todosRes => {
+        // if (todosRes.status == 200) {
+        setTodos(todosRes.data);
+        // }
+      });
     });
-  }, [createSprintModal]);
+  }, [createSprintModal, createTodoModal, counter]);
 
   return (
     <div className='Dashboard'>
@@ -38,7 +58,12 @@ export default function Dashboard() {
       <div className='sprint-list'>
         {sprints != undefined &&
           sprints.map((sprint, index) => (
-            <Sprint key={index} sprint={sprint} />
+            <Sprint
+              key={index}
+              sprint={sprint}
+              todos={todos}
+              removeTodo={removeTodo}
+            />
           ))}
       </div>
       <button
@@ -47,17 +72,25 @@ export default function Dashboard() {
       >
         Add sprint
       </button>
+      <button
+        data-test='dashboard-create-todo-button'
+        onClick={() => toggleCreateTodoModal()}
+      >
+        Add todo
+      </button>
+
       <div className='backlog todos'></div>
 
       {/* _______________________________________ MODALS _______________________________________ */}
-      {/* {createTodoModal && (
+      {createTodoModal && (
         <CreateTodo
           isOpen={createTodoModal}
           toggle={toggleCreateTodoModal}
-          userId={user.id}
+          setCreateTodoModal={setCreateTodoModal}
+          createTodoModal={createTodoModal}
         />
       )}
-      {todo && (
+      {/* {todo && (
         <EditTodo
           isOpen={editTodoModal}
           toggle={setTodo}

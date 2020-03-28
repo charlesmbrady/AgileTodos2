@@ -5,6 +5,10 @@ const cookieParser = require('cookie-parser'); // for the auth token
 // Defining methods for the todosController
 module.exports = {
   create: function(req, res) {
+    const decoded = jwt.decode(req.cookies.token);
+    const todo = req.body;
+    todo.UserId = decoded.id;
+
     db.Todo.create(req.body)
       .then(result => {
         res.json(result);
@@ -15,11 +19,10 @@ module.exports = {
   },
   getById: function(req, res) {
     const decoded = jwt.decode(req.cookies.token);
-    const user = { id: decoded.id };
 
     db.Todo.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       }
     }).then((dbTodos, err) => {
       if (err) {
@@ -31,11 +34,10 @@ module.exports = {
   },
   getAllForUser: function(req, res) {
     const decoded = jwt.decode(req.cookies.token);
-    const user = { id: decoded.id };
 
     db.Todo.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       }
     }).then((dbTodos, err) => {
       if (err) {
@@ -46,11 +48,10 @@ module.exports = {
   },
   updateById: function(req, res) {
     const decoded = jwt.decode(req.cookies.token);
-    const user = { id: decoded.id };
 
     db.Todo.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       }
     }).then((dbTodos, err) => {
       if (err) {
@@ -73,16 +74,18 @@ module.exports = {
     });
   },
   deleteById: async function(req, res) {
-    db.Todo.findAll({
+    const decoded = jwt.decode(req.cookies.token);
+
+    db.Sprint.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       }
-    }).then((dbTodos, err) => {
+    }).then((dbSprints, err) => {
       if (err) {
         res.status(500).send(err);
       }
-      dbTodos.filter(todo => todo.id == req.params.id);
-      if (dbTodos[0]) {
+      dbSprints.filter(sprint => sprint.id == req.params.id);
+      if (dbSprints[0]) {
         db.Sprint.destroy({
           where: {
             id: req.params.id

@@ -3,7 +3,6 @@ import './style.css';
 import API from '../../../Utilities/API';
 
 export default function CreateSprint({ isOpen, toggle }) {
-  const [name, setName] = useState(null);
   const [sprint, setSprint] = useState({
     name: null
   });
