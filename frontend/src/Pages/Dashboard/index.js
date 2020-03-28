@@ -88,6 +88,7 @@ export default function Dashboard() {
           toggle={toggleCreateTodoModal}
           setCreateTodoModal={setCreateTodoModal}
           createTodoModal={createTodoModal}
+          sprints={sprints}
         />
       )}
       {/* {todo && (

@@ -6,7 +6,8 @@ export default function CreateTodo({
   isOpen,
   toggle,
   setCreateTodoModal,
-  createTodoModal
+  createTodoModal,
+  sprints
 }) {
   const [todo, setTodo] = useState({
     subject: '',
@@ -135,7 +136,7 @@ export default function CreateTodo({
           <label for='sprint' data-test='create-todo-modal-label-sprint'>
             Sprint
           </label>
-          <input
+          <select
             type='text'
             id='sprint'
             placeholder='Enter sprint'
@@ -143,7 +144,12 @@ export default function CreateTodo({
             data-test='create-todo-modal-input-sprint'
             value={todo.SprintId}
             onChange={e => formUpdate(e.target.name, e.target.value)}
-          />
+          >
+            <option value={0} selected disabled hidden>Select Sprint...</option>
+            {sprints && sprints.filter(sprint => sprint.status != 'closed').map(sprint => (
+              <option value={sprint.id}>{sprint.name}</option>
+            ))}
+          </select>
           <small className='error' data-test='create-todo-modal-error-sprint'>
             Error message
           </small>

@@ -99,7 +99,7 @@ describe('create todo', () => {
     );
     cy.get(pages.CreateTodoModal.TYPE).type('personal');
     cy.get(pages.CreateTodoModal.PRIORITY).type('1');
-    cy.get(pages.CreateTodoModal.SPRINT).type('1');
+    cy.get(pages.CreateTodoModal.SPRINT).select('Alpha');
 
     cy.get(pages.CreateTodoModal.SUBMIT).click();
     cy.get('[data-test="todo"]').should('be.visible');
