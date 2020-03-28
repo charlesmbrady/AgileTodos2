@@ -1,82 +1,171 @@
-// import React, { useState } from 'react';
-// import './style.css';
-// // import AUTH from "../../utils/AUTH";
-// import API from '../../../Utilities/API';
+import React, { useState } from 'react';
+import './style.css';
+import API from '../../../Utilities/API';
 
-// export default function CreateTodo({ isOpen, toggle }) {
-//   const [subject, setSubject] = useState('');
-//   const [description, setDescription] = useState('');
-//   const [priority, setPriority] = useState('');
-//   const [points, setPoints] = useState(0);
-//   const [sprint, setSprint] = useState(null);
+export default function CreateTodo({
+  isOpen,
+  toggle,
+  setCreateTodoModal,
+  createTodoModal
+}) {
+  const [todo, setTodo] = useState({
+    subject: '',
+    description: '',
+    priority: 0,
+    type: '',
+    SprintId: null
+  });
+  const showHideClassName = isOpen
+    ? 'modal display-block'
+    : 'modal display-none';
 
-//   const createTodo = () => {
-//     const todo = {
-//       subject,
-//       description,
-//       priority,
-//       points
-//     };
-//     API.createTodo(todo).then(todoResponse => {
-//       if (todoResponse.status === 200) {
-//         toggle();
-//       }
-//     });
-//   };
+  const formUpdate = (fieldName, value) => {
+    let tempTodo = { ...todo };
+    tempTodo[fieldName] = value;
 
-//   return (
-//     <Modal>
-//       <form id='form' className='form' onSubmit={e => e.preventDefault()}>
-//         <h2 data-test='header'>Login</h2>
-//         <div className='form-control'>
-//           <label for='email' data-test='label-email'>
-//             Email
-//           </label>
-//           <input
-//             type='text'
-//             id='email'
-//             data-test='login-input-email'
-//             placeholder='Enter email'
-//             name='email'
-//             value={user.email}
-//             onChange={e => formUpdate(e.target.name, e.target.value)}
-//           />
-//           <small className='error' data-test='error-email'>
-//             Error message
-//           </small>
-//         </div>
-//         <div className='form-control'>
-//           <label for='password' data-test='label-password'>
-//             Password
-//           </label>
-//           <input
-//             type='password'
-//             id='password'
-//             data-test='login-input-password'
-//             placeholder='Enter password'
-//             name='password'
-//             value={user.password}
-//             onChange={e => formUpdate(e.target.name, e.target.value)}
-//           />
-//           <small className='error' data-test='error-password'>
-//             Error message
-//           </small>
-//         </div>
-//         <button
-//           type='submit'
-//           data-test='login-submit-button'
-//           onClick={() => authenticateUser(user)}
-//         >
-//           Submit
-//         </button>
-//         <small>
-//           Don't have an account yet? Sign up{' '}
-//           <Link to='/registration' data-test='login-to-registration'>
-//             here
-//           </Link>
-//           .
-//         </small>
-//       </form>
-//     </Modal>
-//   );
-// }
+    setTodo(tempTodo);
+  };
+
+  const addTodo = () => {
+    API.createTodo(todo).then(res => {
+      if (res.status == 200) {
+        // toggle();
+        setCreateTodoModal(!createTodoModal);
+      } else {
+        return false;
+      }
+    });
+  };
+
+  return (
+    <div className={showHideClassName}>
+      <form
+        id='form'
+        className='form modal-main'
+        onSubmit={e => e.preventDefault()}
+      >
+        <h2 data-test='header'>Create a Todo</h2>
+        <div className='form-control'>
+          <label for='subject' data-test='create-todo-modal-label-subject'>
+            Subject
+          </label>
+          <input
+            type='text'
+            id='subject'
+            placeholder='Enter subject'
+            name='subject'
+            data-test='create-todo-modal-input-subject'
+            value={todo.subject}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='create-todo-modal-error-subject'>
+            Error message
+          </small>
+
+          <label
+            for='description'
+            data-test='create-todo-modal-label-description'
+          >
+            Description
+          </label>
+          <input
+            type='text'
+            id='description'
+            placeholder='Enter description'
+            name='description'
+            data-test='create-todo-modal-input-description'
+            value={todo.description}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small
+            className='error'
+            data-test='create-todo-modal-error-description'
+          >
+            Error message
+          </small>
+
+          <label for='type' data-test='create-todo-modal-label-type'>
+            Type
+          </label>
+          <input
+            type='text'
+            id='type'
+            placeholder='Enter type'
+            name='type'
+            data-test='create-todo-modal-input-type'
+            value={todo.type}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='create-todo-modal-error-type'>
+            Error message
+          </small>
+
+          <label for='priority' data-test='create-todo-modal-label-priority'>
+            Priority
+          </label>
+          <input
+            type='text'
+            id='priority'
+            placeholder='Enter priority'
+            name='priority'
+            data-test='create-todo-modal-input-priority'
+            value={todo.priority}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='create-todo-modal-error-priority'>
+            Error message
+          </small>
+
+          <label for='points' data-test='create-todo-modal-label-points'>
+            Points
+          </label>
+          <input
+            type='text'
+            id='points'
+            placeholder='Enter points'
+            name='points'
+            data-test='create-todo-modal-input-points'
+            value={todo.points}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='create-todo-modal-error-points'>
+            Error message
+          </small>
+
+          <label for='sprint' data-test='create-todo-modal-label-sprint'>
+            Sprint
+          </label>
+          <input
+            type='text'
+            id='sprint'
+            placeholder='Enter sprint'
+            name='sprint'
+            data-test='create-todo-modal-input-sprint'
+            value={todo.SprintId}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='create-todo-modal-error-sprint'>
+            Error message
+          </small>
+        </div>
+
+        <button
+          type='submit'
+          className='close'
+          data-test='create-todo-modal-submit-button'
+          onClick={() => addTodo()}
+        >
+          Submit
+        </button>
+        <button
+          type='cancel'
+          className='close'
+          data-test='create-todo-modal-cancel-button'
+          onClick={() => toggle()}
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  );
+}

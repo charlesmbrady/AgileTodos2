@@ -37,12 +37,17 @@ export default {
     });
   },
   getTodos: function() {
-    return axios.get(`/api/todo`).catch(err => {
+    return axios.get(`/api/todos`).catch(err => {
       throw err;
     });
   },
   createSprint: function(sprint) {
     return axios.post(`/api/sprint`, sprint).catch(err => {
+      throw err;
+    });
+  },
+  createTodo: function(todo) {
+    return axios.post(`/api/todo`, todo).catch(err => {
       throw err;
     });
   }

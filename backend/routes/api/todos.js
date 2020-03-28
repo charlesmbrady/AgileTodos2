@@ -7,6 +7,7 @@ const withAuth = require('../../middleware.js');
 // CRUD
 router.post('/todo', withAuth, todosController.create);
 router.get('/todo/:id', withAuth, todosController.getById);
+router.get('/todos', withAuth, todosController.getAllForUser);
 router.put('/todo/:id', withAuth, todosController.updateById);
 router.delete('/todo/:id', withAuth, todosController.deleteById);
 

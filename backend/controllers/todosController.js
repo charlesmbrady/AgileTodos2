@@ -5,6 +5,10 @@ const cookieParser = require('cookie-parser'); // for the auth token
 // Defining methods for the todosController
 module.exports = {
   create: function(req, res) {
+    const decoded = jwt.decode(req.cookies.token);
+    const todo = req.body;
+    todo.UserId = decoded.id;
+
     db.Todo.create(req.body)
       .then(result => {
         res.json(result);
