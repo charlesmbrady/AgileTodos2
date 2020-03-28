@@ -97,14 +97,15 @@ describe('create todo', () => {
     cy.get(pages.CreateTodoModal.DESCRIPTION).type(
       'I really need to do the dishes they are gross'
     );
-    cy.get(pages.CreateTodoModal.TYPE).type('personal');
-    cy.get(pages.CreateTodoModal.PRIORITY).type('1');
+    cy.get(pages.CreateTodoModal.TYPE).select('Personal');
+    cy.get(pages.CreateTodoModal.PRIORITY).select('Medium');
     cy.get(pages.CreateTodoModal.SPRINT).select('Alpha');
 
     cy.get(pages.CreateTodoModal.SUBMIT).click();
     cy.get('[data-test="todo"]').should('be.visible');
 
-    cy.get('[data-test="remove-todo-icon"]');
+    cy.get('[data-test="remove-todo-icon"]').click();
+    cy.get('[data-test="remove-todo-icon"]').should('not.be.visible');
     // cy.get('[data-test="todo"]').should('not.be.visible');
   });
 });

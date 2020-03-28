@@ -88,7 +88,7 @@ export default function CreateTodo({
           <label for='type' data-test='create-todo-modal-label-type'>
             Type
           </label>
-          <input
+          <select
             type='text'
             id='type'
             placeholder='Enter type'
@@ -96,7 +96,11 @@ export default function CreateTodo({
             data-test='create-todo-modal-input-type'
             value={todo.type}
             onChange={e => formUpdate(e.target.name, e.target.value)}
-          />
+          >
+            <option value='personsal' selected>Personal</option>
+            <option value='work'>Work</option>
+            <option value='learning'>Learning</option>
+          </select>
           <small className='error' data-test='create-todo-modal-error-type'>
             Error message
           </small>
@@ -104,7 +108,7 @@ export default function CreateTodo({
           <label for='priority' data-test='create-todo-modal-label-priority'>
             Priority
           </label>
-          <input
+          <select
             type='text'
             id='priority'
             placeholder='Enter priority'
@@ -112,7 +116,11 @@ export default function CreateTodo({
             data-test='create-todo-modal-input-priority'
             value={todo.priority}
             onChange={e => formUpdate(e.target.name, e.target.value)}
-          />
+          >
+            <option value={2} selected>Medium</option>
+            <option value={1}>High</option>
+            <option value={3}>Low</option>
+          </select>
           <small className='error' data-test='create-todo-modal-error-priority'>
             Error message
           </small>
@@ -121,7 +129,7 @@ export default function CreateTodo({
             Points
           </label>
           <input
-            type='text'
+            type='number'
             id='points'
             placeholder='Enter points'
             name='points'
@@ -140,7 +148,7 @@ export default function CreateTodo({
             type='text'
             id='sprint'
             placeholder='Enter sprint'
-            name='sprint'
+            name='SprintId'
             data-test='create-todo-modal-input-sprint'
             value={todo.SprintId}
             onChange={e => formUpdate(e.target.name, e.target.value)}
