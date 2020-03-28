@@ -19,11 +19,10 @@ module.exports = {
   },
   getById: function(req, res) {
     const decoded = jwt.decode(req.cookies.token);
-    const user = { id: decoded.id };
 
     db.Sprint.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       },
       include: [
         {
@@ -41,11 +40,10 @@ module.exports = {
   },
   getAllForUser: function(req, res) {
     const decoded = jwt.decode(req.cookies.token);
-    const user = { id: decoded.id };
 
     db.Sprint.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       },
       include: [
         {
@@ -61,11 +59,10 @@ module.exports = {
   },
   updateById: function(req, res) {
     const decoded = jwt.decode(req.cookies.token);
-    const user = { id: decoded.id };
 
     db.Sprint.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       },
       include: [
         {
@@ -93,9 +90,11 @@ module.exports = {
     });
   },
   deleteById: async function(req, res) {
+    const decoded = jwt.decode(req.cookies.token);
+
     db.Sprint.findAll({
       where: {
-        UserId: user.id
+        UserId: decoded.id
       }
     }).then((dbSprints, err) => {
       if (err) {

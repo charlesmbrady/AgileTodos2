@@ -9,6 +9,7 @@ import CreateTodo from './modals/CreateTodo';
 export default function Dashboard() {
   const [sprints, setSprints] = useState(null);
   const [todos, setTodos] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   //Modals
   const [createSprintModal, setCreateSprintModal] = useState(false);
@@ -22,6 +23,21 @@ export default function Dashboard() {
     setCreateTodoModal(!createTodoModal);
   };
 
+  const apiCall = () => {
+    let temp = counter + 1;
+    setCounter(temp);
+  };
+
+  const removeTodo = todo => {
+    console.log('the todo id****** ' + todo.id);
+
+    API.removeTodo(todo).then(res => {
+      if (res) {
+        apiCall();
+      }
+    });
+  };
+
   useEffect(() => {
     API.getSprints().then(res => {
       // if (res) {
@@ -33,7 +49,7 @@ export default function Dashboard() {
         // }
       });
     });
-  }, [createSprintModal, createTodoModal]);
+  }, [createSprintModal, createTodoModal, counter]);
 
   return (
     <div className='Dashboard'>
@@ -42,7 +58,12 @@ export default function Dashboard() {
       <div className='sprint-list'>
         {sprints != undefined &&
           sprints.map((sprint, index) => (
-            <Sprint key={index} sprint={sprint} todos={todos} />
+            <Sprint
+              key={index}
+              sprint={sprint}
+              todos={todos}
+              removeTodo={removeTodo}
+            />
           ))}
       </div>
       <button
