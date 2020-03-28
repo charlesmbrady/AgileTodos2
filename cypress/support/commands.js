@@ -1,4 +1,4 @@
-import pages from '../integration/Pages/index';
+import pages from '../Pages/index';
 
 // Register
 Cypress.Commands.add('fillRegistration', user => {

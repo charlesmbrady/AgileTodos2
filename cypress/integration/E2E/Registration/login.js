@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
-import pages from '../../Pages/index';
-import User from '../../Helpers/newUser';
+import pages from '../../../Pages/index';
 
 describe('login', function() {
   it('User can login', function() {

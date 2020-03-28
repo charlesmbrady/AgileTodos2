@@ -1,4 +1,4 @@
-import pages from '../../Pages/index';
+import pages from '../../../Pages/index';
 
 describe('create sprint', () => {
   it('can create sprint', () => {
