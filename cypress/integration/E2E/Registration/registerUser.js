@@ -1,28 +1,30 @@
 /// <reference types="cypress" />
 
-import Registration from '../Helpers/registration.js';
+import pages from '../../../Pages/index';
 
 describe('register', function() {
   it('User can visit registration page', function() {
-    cy.visit('/register');
+    cy.visit('/');
+    cy.get(pages.Login.TO_REGISTRATION).click();
   });
 
   it('Can register a new a user', function() {
-    const firstName = 'Charles';
-    const lastName = 'Brady';
-    const email = 'theGoat@gmail.com';
-    const password = 'Password1!';
+    const user = {
+      firstName: 'Cotta',
+      lastName: 'Terra',
+      email: 'Cotta.Terra@gmail.com',
+      password: 'Password1!',
+      passwordConfirmation: 'Password1!'
+    };
 
-    cy.visit('/registration');
+    cy.visit('/');
+
+    cy.get(pages.Login.TO_REGISTRATION).click();
 
     // Fill out form
-    cy.get(Registration.FIRST_NAME).type(firstName);
-    cy.get(Registration.LAST_NAME).type(lastName);
-    cy.get(Registration.EMAIL).type(email);
-    cy.get(Registration.PASSWORD).type(password);
-    cy.get(Registration.PASSWORD_CONFIRMATION).type(password);
+    cy.fillRegistration(user);
 
-    // Submit
-    cy.get(Registration.SUBMIT).click();
+    // // Submit
+    cy.get(pages.Registration.SUBMIT).click();
   });
 });

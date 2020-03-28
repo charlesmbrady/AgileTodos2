@@ -109,19 +109,25 @@ export default function Registration() {
           </small>
         </div>
         <div className='form-control'>
-          <label for='password2' data-test='registration-label-password2'>
+          <label
+            for='password-confirmation'
+            data-test='registration-label-password-confirmation'
+          >
             Confirm Password
           </label>
           <input
             type='password'
-            id='password2'
+            id='password-confirmation'
             placeholder='Enter password again'
-            data-test='registration-input-password2'
+            data-test='registration-input-password-confirmation'
             name='passwordConfirmation'
             value={user.passwordConfirmation}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           />
-          <small className='error' data-test='registration-error-password2'>
+          <small
+            className='error'
+            data-test='registration-error-password-confirmation'
+          >
             Error message
           </small>
         </div>

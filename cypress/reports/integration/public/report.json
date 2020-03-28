@@ -1,14 +1,14 @@
 {
   "stats": {
-    "suites": 4,
-    "tests": 6,
-    "passes": 6,
+    "suites": 5,
+    "tests": 8,
+    "passes": 8,
     "pending": 0,
     "failures": 0,
-    "start": "2020-03-27T04:57:54.728Z",
-    "end": "2020-03-27T04:57:54.728Z",
-    "duration": 6285,
-    "testsRegistered": 6,
+    "start": "2020-03-28T06:22:12.851Z",
+    "end": "2020-03-28T06:22:12.851Z",
+    "duration": 14879,
+    "testsRegistered": 8,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "a9dcdecc-f39d-4e96-b5ac-84e7d6c6db0c",
+      "uuid": "e29cb039-7607-42ac-9cc8-549dceb9654b",
       "title": "",
       "fullFile": "cypress/integration/API/user.js",
       "file": "cypress/integration/API/user.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
+          "uuid": "4161e440-41e3-48e2-b8ed-38d4aea317d8",
           "title": "API Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "POST /auth/register - create new user",
               "fullTitle": "API Tests POST /auth/register - create new user",
               "timedOut": null,
-              "duration": 217,
+              "duration": 246,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'The',\n  lastName: 'Goat',\n  email: 'theGoat@GOAT.com',\n  password: 'Password1!'\n}).then(function (response) {\n  // response.body is automatically serialized into JSON\n  expect(response.body).to.have.property('firstName', 'The'); // true\n  cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id));\n});",
               "err": {},
-              "uuid": "326d3f95-d4c8-4840-bd92-eae26673158b",
-              "parentUUID": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
+              "uuid": "4971ca09-c1c0-45c2-b407-6dee50ab1db7",
+              "parentUUID": "4161e440-41e3-48e2-b8ed-38d4aea317d8",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "PUT /auth/user/:id - update a user",
               "fullTitle": "API Tests PUT /auth/user/:id - update a user",
               "timedOut": null,
-              "duration": 149,
+              "duration": 171,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.request('POST', \"\".concat(Cypress.config('apiUrl'), \"/auth/user\"), {\n  firstName: 'adff',\n  lastName: 'reee',\n  email: 'ranom',\n  password: 'Password1!'\n}).then(function (response) {\n  cy.request('PUT', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id), {\n    firstName: 'anewname'\n  }).then(function (newResponse) {\n    expect(newResponse.status).to.equal(200);\n    cy.request('GET', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (getRes) {\n      console.log('THE GET RESPONSE____________________ \\n\\r\\n' + getRes);\n      expect(getRes.status).to.equal(200); // expect(getRes.body.firstName).to.equal('anewname');\n      cy.request('DELETE', \"\".concat(Cypress.config('apiUrl'), \"/auth/user/\").concat(response.body.id)).then(function (deleteRes) {\n        expect(deleteRes.status).to.equal(200);\n      });\n    });\n  });\n});",
               "err": {},
-              "uuid": "73e4fc5a-22ca-40d1-b284-ea5ff4fc3bff",
-              "parentUUID": "a0bfbcbd-9a43-44a5-8664-9ed18a95fea6",
+              "uuid": "581f4e6b-9ce6-4c80-860e-8615b77f63f2",
+              "parentUUID": "4161e440-41e3-48e2-b8ed-38d4aea317d8",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "326d3f95-d4c8-4840-bd92-eae26673158b",
-            "73e4fc5a-22ca-40d1-b284-ea5ff4fc3bff"
+            "4971ca09-c1c0-45c2-b407-6dee50ab1db7",
+            "581f4e6b-9ce6-4c80-860e-8615b77f63f2"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 366,
+          "duration": 417,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -95,7 +95,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "cd3357ff-03c2-4dfd-a07c-e13dced8ca7a",
+      "uuid": "6cef45e0-055c-4e87-bc0b-fbaafcb48306",
       "title": "",
       "fullFile": "cypress/integration/E2E/Registration/login.js",
       "file": "cypress/integration/E2E/Registration/login.js",
@@ -104,7 +104,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "6893c85e-16c7-4b92-8c4c-e84f8546aecc",
+          "uuid": "392c3f2e-eb67-415c-bfb0-c618476b849c",
           "title": "login",
           "fullFile": "",
           "file": "",
@@ -115,29 +115,29 @@
               "title": "User can login",
               "fullTitle": "login User can login",
               "timedOut": null,
-              "duration": 3432,
+              "duration": 4256,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "var firstName = 'Charles2';\nvar lastName = 'Brady';\nvar email = 'theGoat2@gmail.com';\nvar password = 'Password1!';\ncy.visit('/registration'); // Fill out registration form\ncy.get(_registration[\"default\"].FIRST_NAME).type(firstName);\ncy.get(_registration[\"default\"].LAST_NAME).type(lastName);\ncy.get(_registration[\"default\"].EMAIL).type(email);\ncy.get(_registration[\"default\"].PASSWORD).type(password);\ncy.get(_registration[\"default\"].PASSWORD_CONFIRMATION).type(password); // Submit\ncy.get(_registration[\"default\"].SUBMIT).click(); // Redirects to login page\ncy.get(_login[\"default\"].EMAIL).type(email);\ncy.get(_login[\"default\"].PASSWORD).type(password);\ncy.get(_login[\"default\"].SUBMIT).click();",
+              "code": "var user = {\n  firstName: 'Alpha',\n  lastName: 'Bravos',\n  email: 'alpha.bravos@gmail.com',\n  password: 'Password1!',\n  passwordConfirmation: 'Password1!'\n};\ncy.visit('/registration'); // Fill out registration form\ncy.fillRegistration(user); // Submit\ncy.get(_index[\"default\"].Registration.SUBMIT).click(); // Redirects to login page\ncy.login(user);\ncy.get(_index[\"default\"].Login.SUBMIT).click();",
               "err": {},
-              "uuid": "67ef6b91-31f8-440a-aab2-3751e3f14562",
-              "parentUUID": "6893c85e-16c7-4b92-8c4c-e84f8546aecc",
+              "uuid": "87798e50-1bb4-4c23-a9bd-2ebbd520730b",
+              "parentUUID": "392c3f2e-eb67-415c-bfb0-c618476b849c",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "67ef6b91-31f8-440a-aab2-3751e3f14562"
+            "87798e50-1bb4-4c23-a9bd-2ebbd520730b"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3432,
+          "duration": 4256,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -153,7 +153,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "f56a0493-d41c-4a81-9488-1c6f967c9d0c",
+      "uuid": "b7bd24ec-6e8b-450c-bd1e-a3c9f3e66b29",
       "title": "",
       "fullFile": "cypress/integration/E2E/Registration/registerUser.js",
       "file": "cypress/integration/E2E/Registration/registerUser.js",
@@ -162,7 +162,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "30ce3173-9f60-4354-be47-469622eaab18",
+          "uuid": "572b67b6-1f5a-4730-a921-d5dbd2fae08c",
           "title": "register",
           "fullFile": "",
           "file": "",
@@ -173,17 +173,17 @@
               "title": "User can visit registration page",
               "fullTitle": "register User can visit registration page",
               "timedOut": null,
-              "duration": 723,
+              "duration": 947,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.visit('/register');",
+              "code": "cy.visit('/');\ncy.get(_index[\"default\"].Login.TO_REGISTRATION).click();",
               "err": {},
-              "uuid": "55e73288-8797-416b-9c75-164405cbd426",
-              "parentUUID": "30ce3173-9f60-4354-be47-469622eaab18",
+              "uuid": "758dfb38-d7f6-4465-a3f6-48c508fe9301",
+              "parentUUID": "572b67b6-1f5a-4730-a921-d5dbd2fae08c",
               "isHook": false,
               "skipped": false
             },
@@ -191,30 +191,30 @@
               "title": "Can register a new a user",
               "fullTitle": "register Can register a new a user",
               "timedOut": null,
-              "duration": 1685,
+              "duration": 1916,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "var firstName = 'Charles';\nvar lastName = 'Brady';\nvar email = 'theGoat@gmail.com';\nvar password = 'Password1!';\ncy.visit('/registration'); // Fill out form\ncy.get(_registration[\"default\"].FIRST_NAME).type(firstName);\ncy.get(_registration[\"default\"].LAST_NAME).type(lastName);\ncy.get(_registration[\"default\"].EMAIL).type(email);\ncy.get(_registration[\"default\"].PASSWORD).type(password);\ncy.get(_registration[\"default\"].PASSWORD_CONFIRMATION).type(password); // Submit\ncy.get(_registration[\"default\"].SUBMIT).click();",
+              "code": "var user = {\n  firstName: 'Cotta',\n  lastName: 'Terra',\n  email: 'Cotta.Terra@gmail.com',\n  password: 'Password1!',\n  passwordConfirmation: 'Password1!'\n};\ncy.visit('/');\ncy.get(_index[\"default\"].Login.TO_REGISTRATION).click(); // Fill out form\ncy.fillRegistration(user); // // Submit\ncy.get(_index[\"default\"].Registration.SUBMIT).click();",
               "err": {},
-              "uuid": "8ed9a4ad-5b11-42bd-bfa3-859d4e3914a3",
-              "parentUUID": "30ce3173-9f60-4354-be47-469622eaab18",
+              "uuid": "ab211e0b-8a9e-47db-a90f-7d9711542886",
+              "parentUUID": "572b67b6-1f5a-4730-a921-d5dbd2fae08c",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "55e73288-8797-416b-9c75-164405cbd426",
-            "8ed9a4ad-5b11-42bd-bfa3-859d4e3914a3"
+            "758dfb38-d7f6-4465-a3f6-48c508fe9301",
+            "ab211e0b-8a9e-47db-a90f-7d9711542886"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2408,
+          "duration": 2863,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -230,7 +230,84 @@
       "_timeout": 2000
     },
     {
-      "uuid": "2c461f37-6b08-4758-aad3-78816b210d62",
+      "uuid": "f4f2cfc0-1815-4a48-8e64-39bc9cec1b36",
+      "title": "",
+      "fullFile": "cypress/integration/E2E/Sprint/createSprint.js",
+      "file": "cypress/integration/E2E/Sprint/createSprint.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5e28616a-8550-4dc5-bef1-2d3c1068c166",
+          "title": "create sprint",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "can create sprint",
+              "fullTitle": "create sprint can create sprint",
+              "timedOut": null,
+              "duration": 3816,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var sprint = {\n  name: 'Alpha',\n  startDate: null,\n  endDate: null\n};\nvar user = {\n  firstName: 'Alpha',\n  lastName: 'Bravo',\n  email: 'alpha.bravo@gmail.com',\n  password: 'Password1!',\n  passwordConfirmation: 'Password1!'\n};\ncy.visit('/registration'); // Fill out registration form\ncy.fillRegistration(user); // Submit\ncy.get(_index[\"default\"].Registration.SUBMIT).click(); // Redirects to login page\ncy.login(user);\ncy.get(_index[\"default\"].Login.SUBMIT).click();\ncy.get(_index[\"default\"].Dashboard.CREATE_SPRINT_BUTTON).click();\ncy.get(_index[\"default\"].CreateSprintModal.NAME).type('Alpha');\ncy.get(_index[\"default\"].CreateSprintModal.SUBMIT).click();",
+              "err": {},
+              "uuid": "b436eb66-ee06-4011-a3c9-fe6a43a95f8a",
+              "parentUUID": "5e28616a-8550-4dc5-bef1-2d3c1068c166",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "can create multiple sprints",
+              "fullTitle": "create sprint can create multiple sprints",
+              "timedOut": null,
+              "duration": 3491,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var sprintOne = 'Alpha';\nvar sprintTwo = 'Bravo';\nvar user = {\n  firstName: 'Charlie',\n  lastName: 'Davos',\n  email: 'Charlie.Daveos@gmail.com',\n  password: 'Password1!',\n  passwordConfirmation: 'Password1!'\n};\ncy.visit('/registration'); // Fill out registration form\ncy.fillRegistration(user); // Submit\ncy.get(_index[\"default\"].Registration.SUBMIT).click(); // Redirects to login page\ncy.login(user);\ncy.get(_index[\"default\"].Login.SUBMIT).click();\ncy.get(_index[\"default\"].Dashboard.CREATE_SPRINT_BUTTON).click();\ncy.get(_index[\"default\"].CreateSprintModal.NAME).type(sprintOne);\ncy.get(_index[\"default\"].CreateSprintModal.SUBMIT).click();\ncy.get(_index[\"default\"].Dashboard.CREATE_SPRINT_BUTTON).click();\ncy.get(_index[\"default\"].CreateSprintModal.NAME).type(sprintTwo);\ncy.get(_index[\"default\"].CreateSprintModal.SUBMIT).click();",
+              "err": {},
+              "uuid": "3919564a-b532-47fa-889c-0ef6ecd37cf2",
+              "parentUUID": "5e28616a-8550-4dc5-bef1-2d3c1068c166",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b436eb66-ee06-4011-a3c9-fe6a43a95f8a",
+            "3919564a-b532-47fa-889c-0ef6ecd37cf2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7307,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "30d3c5f3-5123-4620-ae36-9b33de2134d3",
       "title": "",
       "fullFile": "cypress/integration/test-spec.js",
       "file": "cypress/integration/test-spec.js",
@@ -239,7 +316,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "35af6ca8-0a92-42e2-986f-a74fc43caed3",
+          "uuid": "486faef1-fcb7-4bce-8511-c4bbe922b96c",
           "title": "Canary Test",
           "fullFile": "",
           "file": "",
@@ -250,29 +327,29 @@
               "title": "Canary test",
               "fullTitle": "Canary Test Canary test",
               "timedOut": null,
-              "duration": 79,
+              "duration": 36,
               "state": "passed",
-              "speed": "slow",
+              "speed": "fast",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "expect(1).to.equal(1);",
               "err": {},
-              "uuid": "f1b909c6-24a2-46a7-9b50-f8eab1245448",
-              "parentUUID": "35af6ca8-0a92-42e2-986f-a74fc43caed3",
+              "uuid": "43924ab6-2a85-41e5-950d-0f09132fe83d",
+              "parentUUID": "486faef1-fcb7-4bce-8511-c4bbe922b96c",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f1b909c6-24a2-46a7-9b50-f8eab1245448"
+            "43924ab6-2a85-41e5-950d-0f09132fe83d"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 79,
+          "duration": 36,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

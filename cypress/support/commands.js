@@ -1,29 +1,38 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+import pages from '../Pages/index';
 
+// Register
+Cypress.Commands.add('fillRegistration', user => {
+  // type in first name
+  cy.get(pages.Registration.FIRST_NAME).type(user.firstName);
+
+  // type in first name
+  cy.get(pages.Registration.LAST_NAME).type(user.lastName);
+
+  // type in first name
+  cy.get(pages.Registration.EMAIL).type(user.email);
+
+  // type in password
+  cy.get(pages.Registration.PASSWORD).type(user.password);
+
+  // type in password
+  cy.get(pages.Registration.PASSWORD_CONFIRMATION).type(
+    user.passwordConfirmation
+  );
+});
+
+// Login
+Cypress.Commands.add('login', user => {
+  // type in email
+  cy.get(pages.Login.EMAIL).type(user.email);
+
+  // type in password
+  cy.get(pages.Login.PASSWORD).type(user.password);
+
+  // click submit
+  cy.get(pages.Login.SUBMIT).click();
+});
+
+// Coverage
 if (Cypress.env('coverage')) {
   afterEach(function() {
     const coverageFile = `${Cypress.config('coverageFolder')}/out.json`;
