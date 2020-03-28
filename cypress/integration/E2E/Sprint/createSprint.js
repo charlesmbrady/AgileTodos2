@@ -41,7 +41,7 @@ describe('create sprint', () => {
     const user = {
       firstName: 'Charlie',
       lastName: 'Davos',
-      email: 'Charlie.Davos@gmail.com',
+      email: 'Charlie.Daveos@gmail.com',
       password: 'Password1!',
       passwordConfirmation: 'Password1!'
     };

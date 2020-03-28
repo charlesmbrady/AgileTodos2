@@ -7,8 +7,8 @@ describe('login', function() {
   it('User can login', function() {
     const user = {
       firstName: 'Alpha',
-      lastName: 'Bravo',
-      email: 'alpha.bravo@gmail.com',
+      lastName: 'Bravos',
+      email: 'alpha.bravos@gmail.com',
       password: 'Password1!',
       passwordConfirmation: 'Password1!'
     };
