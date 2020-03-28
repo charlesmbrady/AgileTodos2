@@ -5,17 +5,16 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    subject: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       trim: true
     },
-    description: {
-      type: DataTypes.STRING,
-      trim: true
+    startDate: {
+      type: DataTypes.DATE
     },
-    points: {
-      type: DataTypes.INTEGER
+    endDate: {
+      type: DataTypes.DATE
     },
     status: {
       type: DataTypes.STRING
