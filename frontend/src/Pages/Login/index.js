@@ -78,7 +78,10 @@ export default function Login() {
         </button>
         <small>
           Don't have an account yet? Sign up{' '}
-          <Link to='/registration'>here</Link>.
+          <Link to='/registration' data-test='login-to-registration'>
+            here
+          </Link>
+          .
         </small>
       </form>
     </div>

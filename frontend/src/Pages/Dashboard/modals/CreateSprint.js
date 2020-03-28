@@ -1,92 +1,76 @@
 import React, { useState } from 'react';
 import './style.css';
-import API from '../../../utils/API';
+import API from '../../../Utilities/API';
 
 export default function CreateSprint({ isOpen, toggle }) {
   const [name, setName] = useState(null);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [sprint, setSprint] = useState({
+    name: null
+  });
+  const showHideClassName = isOpen
+    ? 'modal display-block'
+    : 'modal display-none';
 
-  const createSprint = () => {
-    const sprint = {
-      name,
-      startDate,
-      endDate
-    };
-    API.createSprint(sprint).then(sprintResponse => {
-      if (sprintResponse.status === 200) {
+  const formUpdate = (fieldName, value) => {
+    let tempSprint = { ...sprint };
+    tempSprint[fieldName] = value;
+
+    setSprint(tempSprint);
+  };
+
+  const addSprint = () => {
+    API.createSprint(sprint).then(res => {
+      if (res.status == 200) {
         toggle();
+      } else {
+        return false;
       }
     });
   };
 
   return (
-    <Modal
-      className='my-modal'
-      isOpen={isOpen}
-      toggle={toggle}
-      data-test='create-sprint-modal'
-    >
-      <ModalHeader className='my-modal' toggle={toggle}>
-        Create Sprint
-      </ModalHeader>
-      <ModalBody className='my-modal'>
-        <Form>
-          <FormGroup>
-            <Label for='subject'>Name</Label>
-            <Input
-              type='text'
-              name='name'
-              id='name'
-              data-test='create-sprint-modal-input-name'
-              value={name}
-              onChange={e => setName(e.target.value)}
-              placeholder=''
-            />
-          </FormGroup>
+    <div className={showHideClassName}>
+      <form
+        id='form'
+        className='form modal-main'
+        onSubmit={e => e.preventDefault()}
+      >
+        <h2 data-test='header'>Create a Sprint</h2>
+        <div className='form-control'>
+          <label for='name' data-test='create-sprint-modal-label-name'>
+            Name
+          </label>
+          <input
+            type='text'
+            id='name'
+            placeholder='Enter sprint name'
+            name='name'
+            data-test='create-sprint-modal-input-name'
+            value={sprint.name}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='create-sprint-modal-error-name'>
+            Error message
+          </small>
+        </div>
 
-          <FormGroup>
-            <Label for='startDate'>Start Date</Label>
-            <Input
-              type='date'
-              name='startDate'
-              id='startDate'
-              data-test='create-sprint-modal-input-start-date'
-              placeholder='date placeholder'
-              value={startDate}
-              onChange={e => setStartDate(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for='endDate'>End Date</Label>
-            <Input
-              type='date'
-              name='endDate'
-              id='endDate'
-              data-test='create-sprint-modal-input-end-date'
-              placeholder='date placeholder'
-              value={endDate}
-              onChange={e => setEndDate(e.target.value)}
-            />
-          </FormGroup>
-        </Form>
-      </ModalBody>
-      <ModalFooter className='my-modal'>
-        <Button
-          color='primary'
+        <button
+          type='submit'
+          className='close'
           data-test='create-sprint-modal-submit-button'
-          onClick={() => createSprint()}
+          onClick={() => addSprint()}
         >
           Submit
-        </Button>{' '}
-        <Button
-          color='secondary'
+        </button>
+        <button
+          type='cancel'
+          className='close'
           data-test='create-sprint-modal-cancel-button'
-          onClick={toggle}
+          onClick={() => toggle()}
         >
           Cancel
-        </Button>
-      </ModalFooter>
-    </Modal>
+        </button>
+      </form>
+    </div>
   );
 }

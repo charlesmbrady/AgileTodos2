@@ -1,31 +1,29 @@
 /// <reference types="cypress" />
 
-import Registration from '../Helpers/registration.js';
-import Login from '../Helpers/login.js';
+import pages from '../../Pages/index';
+import User from '../../Helpers/newUser';
 
 describe('login', function() {
   it('User can login', function() {
-    const firstName = 'Charles2';
-    const lastName = 'Brady';
-    const email = 'theGoat2@gmail.com';
-    const password = 'Password1!';
+    const user = {
+      firstName: 'Alpha',
+      lastName: 'Bravo',
+      email: 'alpha.bravo@gmail.com',
+      password: 'Password1!',
+      passwordConfirmation: 'Password1!'
+    };
 
     cy.visit('/registration');
 
     // Fill out registration form
-    cy.get(Registration.FIRST_NAME).type(firstName);
-    cy.get(Registration.LAST_NAME).type(lastName);
-    cy.get(Registration.EMAIL).type(email);
-    cy.get(Registration.PASSWORD).type(password);
-    cy.get(Registration.PASSWORD_CONFIRMATION).type(password);
+    cy.fillRegistration(user);
 
     // Submit
-    cy.get(Registration.SUBMIT).click();
+    cy.get(pages.Registration.SUBMIT).click();
     // Redirects to login page
 
-    cy.get(Login.EMAIL).type(email);
-    cy.get(Login.PASSWORD).type(password);
+    cy.login(user);
 
-    cy.get(Login.SUBMIT).click();
+    cy.get(pages.Login.SUBMIT).click();
   });
 });
