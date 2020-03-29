@@ -1,3 +1,18 @@
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
+}
+
 .sprint {
   border: 1px solid black;
+  margin-bottom: 30px;
+}
+
+#sprint-name {
+  color: var(--fifth-color);
 }

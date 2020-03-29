@@ -1,15 +1,30 @@
 * {
   box-sizing: border-box;
 }
+html {
+  height: 100vh;
+  width: 100vw;
+}
 
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
+}
 body {
-  background-color: #f9fafb;
+  /* background-image: linear-gradient(to bottom right, #000000, #d1d1d1d8); */
+  background-color: var(--first-color);
   font-family: 'Open Sans', sans-serif;
   display: flex;
   align-items: center;
+  margin: 0 auto;
   justify-content: center;
-  min-height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  width: 100%;
   margin: 0;
 }
 #root {

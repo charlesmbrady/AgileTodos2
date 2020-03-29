@@ -1,7 +1,24 @@
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
+}
+
 .todo {
   display: grid;
-  grid-template-areas: 'type subject subject subject subject priority points';
-  border: 1px solid blue;
+  grid-template-areas: 'type subject subject subject subject subject subject priority points remove';
+  border-bottom: 1px solid white;
+  background: var(--fourth-color);
+}
+
+.todo:hover {
+  background: #ffffff;
+  /* cursor: pointer; */
+  transition-duration: 300ms;
 }
 
 .subject {
@@ -15,4 +32,11 @@
 }
 .points {
   grid-area: points;
+}
+.remove {
+  grid-area: remove;
+}
+.remove:hover {
+  cursor: pointer;
+  color: red;
 }

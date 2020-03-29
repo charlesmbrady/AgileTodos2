@@ -52,16 +52,16 @@ export default function Dashboard() {
   }, [createSprintModal, createTodoModal, counter]);
 
   return (
-    <div className='Dashboard'>
+    <div className='dashboard'>
       {/* This is the backlog */}
-      <h1>Dashboard</h1>
+      <h1 id='dashboard-header'>Dashboard</h1>
       <div className='sprint-list'>
         {sprints != undefined &&
           sprints.map((sprint, index) => (
             <Sprint
               key={index}
               sprint={sprint}
-              todos={todos}
+              todos={todos.filter(todo => todo.SprintId == sprint.id)}
               removeTodo={removeTodo}
             />
           ))}

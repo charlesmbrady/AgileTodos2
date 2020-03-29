@@ -1,6 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
+}
+
 .sprint-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-area: sprint-list;
+  grid-template-rows: repeat(auto-fill, minmax(260px, 1fr));
   grid-gap: 0.5rem;
   align-items: flex-start;
+  border: 1px solid white;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-areas:
+    '.'
+    'sprint-list'
+    'sprint-list'
+    'sprint-list'
+    'sprint-list'
+    '.';
+}
+
+#dashboard-header {
+  color: var(--third-color);
+  font-family: 'Arial';
 }

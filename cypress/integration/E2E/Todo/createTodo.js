@@ -63,7 +63,9 @@ describe('create todo', () => {
       subject: 'Do the dishes',
       description: 'I need to do the dishes',
       points: 10,
-      priority: 2
+      priority: 2,
+      type: 'personal',
+      sprintName: 'llama'
     };
 
     const user = {
