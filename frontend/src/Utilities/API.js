@@ -46,6 +46,11 @@ export default {
       throw err;
     });
   },
+  updateSprint: function(sprint) {
+    return axios.put(`/api/sprint`, sprint).catch(err => {
+      throw err;
+    });
+  },
   createTodo: function(todo) {
     return axios.post(`/api/todo`, todo).catch(err => {
       throw err;

@@ -53,21 +53,7 @@ describe('create todo', () => {
     cy.get('[data-test="todo"]').should('be.visible');
   });
 
-  it.only('can delete todo', () => {
-    const sprint = {
-      name: 'llama',
-      startDate: null,
-      endDate: null
-    };
-    const todo = {
-      subject: 'Do the dishes',
-      description: 'I need to do the dishes',
-      points: 10,
-      priority: 2,
-      type: 'personal',
-      sprintName: 'llama'
-    };
-
+  it('can delete todo', () => {
     const user = {
       firstName: 'Braomo',
       lastName: 'queen ',
@@ -108,6 +94,67 @@ describe('create todo', () => {
 
     cy.get('[data-test="remove-todo-icon"]').click();
     cy.get('[data-test="remove-todo-icon"]').should('not.be.visible');
+    // cy.get('[data-test="todo"]').should('not.be.visible');
+  });
+
+  it.only('can create many todos ', () => {
+    const sprintOne = {
+      name: 'llama',
+      startDate: null,
+      endDate: null
+    };
+    const todoOne = {
+      subject: 'Do the dishes',
+      description: 'I need to do the dishes',
+      points: 10,
+      priority: '2',
+      type: 'personal',
+      sprintName: 'llama'
+    };
+    const todoTwo = {
+      subject: 'Take car to cleaner',
+      description: 'It is so dirty and needs a wax',
+      points: 10,
+      priority: '2',
+      type: 'personal',
+      sprintName: 'llama'
+    };
+
+    const user = {
+      firstName: 'Braomo',
+      lastName: 'queen ',
+      email: 'borma.queen@gmail.com',
+      password: 'Password1!',
+      passwordConfirmation: 'Password1!'
+    };
+
+    cy.visit('/registration');
+
+    // Fill out registration form
+    cy.fillRegistration(user);
+
+    // Submit
+    cy.get(pages.Registration.SUBMIT).click();
+    // Redirects to login page
+
+    cy.login(user);
+
+    cy.get(pages.Login.SUBMIT).click();
+
+    cy.get(pages.Dashboard.CREATE_SPRINT_BUTTON).click();
+    cy.fillSprint(sprintOne);
+    cy.get(pages.CreateSprintModal.SUBMIT).click();
+
+    cy.get(pages.Dashboard.CREATE_TODO_BUTTON).click();
+    cy.fillTodo(todoOne);
+    cy.get(pages.CreateTodoModal.SUBMIT).click();
+
+    cy.get(pages.Dashboard.CREATE_TODO_BUTTON).click();
+    cy.fillTodo(todoOne);
+    cy.get(pages.CreateTodoModal.SUBMIT).click();
+
+    cy.get('[data-test="todo"]').should('be.visible');
+
     // cy.get('[data-test="todo"]').should('not.be.visible');
   });
 });

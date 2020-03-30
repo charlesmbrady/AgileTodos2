@@ -1,5 +1,6 @@
 import './style.css';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import API from '../../Utilities/API';
 import Sprint from '../../Components/Sprint/index.js';
 import CreateSprint from './modals/CreateSprint';
@@ -54,30 +55,42 @@ export default function Dashboard() {
   return (
     <div className='dashboard'>
       {/* This is the backlog */}
-      <h1 id='dashboard-header'>Dashboard</h1>
+      <div id='dashboard-header'>
+        <h1 id='dashboard-title' className='dashboard-header-item'>
+          Dashboard
+        </h1>
+        <Link to='activesprint' data-test='dashboard-to-active'>
+          Active Sprint
+        </Link>
+        <button
+          id='create-sprint-button'
+          className='dashboard-header-item'
+          data-test='dashboard-create-sprint-button'
+          onClick={() => toggleCreateSprintModal()}
+        >
+          Add sprint
+        </button>
+        <button
+          id='create-todo-button'
+          className='dashboard-header-item'
+          data-test='dashboard-create-todo-button'
+          onClick={() => toggleCreateTodoModal()}
+        >
+          Add todo
+        </button>
+      </div>
       <div className='sprint-list'>
         {sprints != undefined &&
           sprints.map((sprint, index) => (
             <Sprint
               key={index}
+              index={index}
               sprint={sprint}
               todos={todos.filter(todo => todo.SprintId == sprint.id)}
               removeTodo={removeTodo}
             />
           ))}
       </div>
-      <button
-        data-test='dashboard-create-sprint-button'
-        onClick={() => toggleCreateSprintModal()}
-      >
-        Add sprint
-      </button>
-      <button
-        data-test='dashboard-create-todo-button'
-        onClick={() => toggleCreateTodoModal()}
-      >
-        Add todo
-      </button>
 
       <div className='backlog todos'></div>
 

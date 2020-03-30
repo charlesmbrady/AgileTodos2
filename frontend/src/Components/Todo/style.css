@@ -11,12 +11,12 @@
 .todo {
   display: grid;
   grid-template-areas: 'type subject subject subject subject subject subject priority points remove';
-  border-bottom: 1px solid white;
+  /* border-bottom: 1px solid white; */
   background: var(--fourth-color);
 }
 
 .todo:hover {
-  background: #ffffff;
+  background: #ffffffb9;
   /* cursor: pointer; */
   transition-duration: 300ms;
 }

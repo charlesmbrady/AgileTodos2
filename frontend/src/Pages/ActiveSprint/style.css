@@ -10,36 +10,36 @@
   --fifth-color: #bd8b9c;
 }
 
-.sprint-list {
+.status-list {
   display: grid;
-  grid-area: sprint-list;
+  grid-area: status-list;
   /* margin: 0 auto; */
   /* margin-top: 20px; */
-  grid-template-columns: '1fr';
+  grid-template-columns: '1fr 1fr 1fr';
   grid-gap: 0.5rem;
   /* align-items: flex-start; */
-  border: 1px solid white;
+  border: 1px solid yellow;
   /* width: 95%; */
 }
 
-.dashboard {
+.active {
   display: grid;
-  grid-gap: 25px;
-  grid-template-areas: 'header sprint-list sprint-list sprint-list sprint-list sprint-list';
+  grid-gap: 5%;
+  grid-template-areas: 'header status-list status-list status-list status-list status-list';
 }
 
-#dashboard-header {
+#active-header {
   color: var(--third-color);
   font-family: 'Arial';
   grid-area: header;
   display: grid;
   grid-template-columns: '1fr';
-  height: 100vh;
-  grid-gap: 15px;
+  height: 100%;
+  grid-gap: 5%;
   grid-template-rows: repeat(auto-fit, minmax(100px, 200px));
   /* max-width: 100px; */
   border-right: 1px solid lightgray;
 }
 
-.dashboard-header-item {
+.active-header-item {
 }
