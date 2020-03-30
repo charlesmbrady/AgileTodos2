@@ -2,38 +2,31 @@ import React, { useState } from 'react';
 import './style.css';
 import API from '../../../Utilities/API';
 
-export default function CreateTodo({
+export default function EditTodo({
   isOpen,
   toggle,
   setEditTodoModal,
   editTodoModal,
+  todo,
   sprints
 }) {
-  const [todo, setTodo] = useState({
-    subject: '',
-    description: '',
-    priority: 2,
-    type: 'personal',
-    points: 0,
-    status: 'not started',
-    SprintId: null
-  });
+  const [editTodo, setEditTodo] = useState(todo);
   const showHideClassName = isOpen
     ? 'modal display-block'
     : 'modal display-none';
 
   const formUpdate = (fieldName, value) => {
-    let tempTodo = { ...todo };
+    let tempTodo = { ...editTodo };
     tempTodo[fieldName] = value;
 
-    setTodo(tempTodo);
+    setEditTodo(tempTodo);
   };
 
-  const addTodo = () => {
-    API.createTodo(todo).then(res => {
+  const updateTodo = () => {
+    API.updateTodo(editTodo).then(res => {
       if (res.status == 200) {
         // toggle();
-        setCreateTodoModal(!createTodoModal);
+        setEditTodoModal(!editTodoModal);
       } else {
         return false;
       }
@@ -47,9 +40,9 @@ export default function CreateTodo({
         className='form modal-main'
         onSubmit={e => e.preventDefault()}
       >
-        <h2 data-test='header'>Create a Todo</h2>
+        <h2 data-test='header'>Edit Todo</h2>
         <div className='form-control'>
-          <label for='subject' data-test='create-todo-modal-label-subject'>
+          <label for='subject' data-test='edit-todo-modal-label-subject'>
             Subject
           </label>
           <input
@@ -57,17 +50,17 @@ export default function CreateTodo({
             id='subject'
             placeholder='Enter subject'
             name='subject'
-            data-test='create-todo-modal-input-subject'
-            value={todo.subject}
+            data-test='edit-todo-modal-input-subject'
+            value={editTodo.subject}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           />
-          <small className='error' data-test='create-todo-modal-error-subject'>
+          <small className='error' data-test='edit-todo-modal-error-subject'>
             Error message
           </small>
 
           <label
             for='description'
-            data-test='create-todo-modal-label-description'
+            data-test='edit-todo-modal-label-description'
           >
             Description
           </label>
@@ -76,18 +69,18 @@ export default function CreateTodo({
             id='description'
             placeholder='Enter description'
             name='description'
-            data-test='create-todo-modal-input-description'
-            value={todo.description}
+            data-test='edit-todo-modal-input-description'
+            value={editTodo.description}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           />
           <small
             className='error'
-            data-test='create-todo-modal-error-description'
+            data-test='edit-todo-modal-error-description'
           >
             Error message
           </small>
 
-          <label for='type' data-test='create-todo-modal-label-type'>
+          <label for='type' data-test='edit-todo-modal-label-type'>
             Type
           </label>
           <select
@@ -95,8 +88,8 @@ export default function CreateTodo({
             id='type'
             placeholder='Enter type'
             name='type'
-            data-test='create-todo-modal-input-type'
-            value={todo.type}
+            data-test='edit-todo-modal-input-type'
+            value={editTodo.type}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           >
             <option value='personal' selected>
@@ -105,11 +98,11 @@ export default function CreateTodo({
             <option value='work'>Work</option>
             <option value='learning'>Learning</option>
           </select>
-          <small className='error' data-test='create-todo-modal-error-type'>
+          <small className='error' data-test='edit-todo-modal-error-type'>
             Error message
           </small>
 
-          <label for='priority' data-test='create-todo-modal-label-priority'>
+          <label for='priority' data-test='edit-todo-modal-label-priority'>
             Priority
           </label>
           <select
@@ -117,8 +110,8 @@ export default function CreateTodo({
             id='priority'
             placeholder='Enter priority'
             name='priority'
-            data-test='create-todo-modal-input-priority'
-            value={todo.priority}
+            data-test='edit-todo-modal-input-priority'
+            value={editTodo.priority}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           >
             <option value='2' selected>
@@ -127,11 +120,11 @@ export default function CreateTodo({
             <option value='3'>High</option>
             <option value='1'>Low</option>
           </select>
-          <small className='error' data-test='create-todo-modal-error-priority'>
+          <small className='error' data-test='edit-todo-modal-error-priority'>
             Error message
           </small>
 
-          <label for='status' data-test='create-todo-modal-label-status'>
+          <label for='status' data-test='edit-todo-modal-label-status'>
             Status
           </label>
           <select
@@ -139,8 +132,8 @@ export default function CreateTodo({
             id='status'
             placeholder='Enter status'
             name='status'
-            data-test='create-todo-modal-input-status'
-            value={todo.status}
+            data-test='edit-todo-modal-input-status'
+            value={editTodo.status}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           >
             <option value='not started' selected>
@@ -149,11 +142,11 @@ export default function CreateTodo({
             <option value='in progress'>In Progress</option>
             <option value='completed'>Completed</option>
           </select>
-          <small className='error' data-test='create-todo-modal-error-status'>
+          <small className='error' data-test='edit-todo-modal-error-status'>
             Error message
           </small>
 
-          <label for='points' data-test='create-todo-modal-label-points'>
+          <label for='points' data-test='edit-todo-modal-label-points'>
             Points
           </label>
           <input
@@ -161,15 +154,15 @@ export default function CreateTodo({
             id='points'
             placeholder='Enter points'
             name='points'
-            data-test='create-todo-modal-input-points'
-            value={todo.points}
+            data-test='edit-todo-modal-input-points'
+            value={editTodo.points}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           />
-          <small className='error' data-test='create-todo-modal-error-points'>
+          <small className='error' data-test='edit-todo-modal-error-points'>
             Error message
           </small>
 
-          <label for='sprint' data-test='create-todo-modal-label-sprint'>
+          <label for='sprint' data-test='edit-todo-modal-label-sprint'>
             Sprint
           </label>
           <select
@@ -177,8 +170,8 @@ export default function CreateTodo({
             id='sprint'
             placeholder='Enter sprint'
             name='SprintId'
-            data-test='create-todo-modal-input-sprint'
-            value={todo.SprintId}
+            data-test='edit-todo-modal-input-sprint'
+            value={editTodo.SprintId}
             onChange={e => formUpdate(e.target.name, e.target.value)}
           >
             <option value={0} selected disabled hidden>
@@ -191,7 +184,7 @@ export default function CreateTodo({
                   <option value={sprint.id}>{sprint.name}</option>
                 ))}
           </select>
-          <small className='error' data-test='create-todo-modal-error-sprint'>
+          <small className='error' data-test='edit-todo-modal-error-sprint'>
             Error message
           </small>
         </div>
@@ -199,15 +192,15 @@ export default function CreateTodo({
         <button
           type='submit'
           className='close'
-          data-test='create-todo-modal-submit-button'
-          onClick={() => addTodo()}
+          data-test='edit-todo-modal-submit-button'
+          onClick={() => updateTodo()}
         >
           Submit
         </button>
         <button
           type='cancel'
           className='close'
-          data-test='create-todo-modal-cancel-button'
+          data-test='edit-todo-modal-cancel-button'
           onClick={() => toggle()}
         >
           Cancel

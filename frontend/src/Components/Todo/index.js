@@ -3,9 +3,9 @@ import React from 'react';
 import { FaTrashAlt, FaArrowUp } from 'react-icons/fa';
 // import _ from 'lodash';
 
-export default function Todo({ todo, removeTodo }) {
+export default function Todo({ todo, removeTodo, editTodo }) {
   return (
-    <div className='todo' data-test='todo'>
+    <div className='todo' data-test='todo' onClick={() => editTodo(todo)}>
       <div className='type todo-item'>{todo.type}</div>
       <div className='subject todo-item'>{todo.subject}</div>
       <div className='points todo-item'>{todo.points}</div>

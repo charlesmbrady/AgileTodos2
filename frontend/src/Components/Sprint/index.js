@@ -3,7 +3,7 @@ import React from 'react';
 import Todo from '../Todo/index';
 import API from '../../Utilities/API';
 
-export default function Sprint({ sprint, todos, removeTodo, index }) {
+export default function Sprint({ sprint, todos, removeTodo, index, editTodo }) {
   const activateSprint = sprint => {
     sprint.status = 'active';
     //PUT new sprint to update
@@ -23,7 +23,12 @@ export default function Sprint({ sprint, todos, removeTodo, index }) {
       {todos &&
         todos.length > 0 &&
         todos.map((todo, i) => (
-          <Todo key={i} todo={todo} removeTodo={removeTodo} />
+          <Todo
+            key={i}
+            todo={todo}
+            removeTodo={removeTodo}
+            editTodo={editTodo}
+          />
         ))}
     </div>
   );

@@ -5,23 +5,33 @@ import API from '../../Utilities/API';
 import Sprint from '../../Components/Sprint/index.js';
 import CreateSprint from './modals/CreateSprint';
 import CreateTodo from './modals/CreateTodo';
-// import EditTodo from './modals/EditTodo';
+import EditTodo from './modals/EditTodo';
 
 export default function Dashboard() {
   const [sprints, setSprints] = useState(null);
   const [todos, setTodos] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [todo, setTodo] = useState(0);
+
+  const editTodo = todo => {
+    console.log('clickd');
+    setTodo(todo);
+    setEditTodoModal(!editTodoModal);
+  };
 
   //Modals
   const [createSprintModal, setCreateSprintModal] = useState(false);
   const [createTodoModal, setCreateTodoModal] = useState(false);
-  // const [editTodoModal] = useState(true);
+  const [editTodoModal, setEditTodoModal] = useState(false);
 
   const toggleCreateSprintModal = () => {
     setCreateSprintModal(!createSprintModal);
   };
   const toggleCreateTodoModal = () => {
     setCreateTodoModal(!createTodoModal);
+  };
+  const toggleEditTodoModal = () => {
+    setEditTodoModal(!editTodoModal);
   };
 
   const apiCall = () => {
@@ -86,6 +96,7 @@ export default function Dashboard() {
               key={index}
               index={index}
               sprint={sprint}
+              editTodo={editTodo}
               todos={todos.filter(todo => todo.SprintId == sprint.id)}
               removeTodo={removeTodo}
             />
@@ -104,14 +115,16 @@ export default function Dashboard() {
           sprints={sprints}
         />
       )}
-      {/* {todo && (
+      {editTodoModal && (
         <EditTodo
           isOpen={editTodoModal}
-          toggle={setTodo}
+          toggle={toggleEditTodoModal}
+          setEditTodoModal={setEditTodoModal}
+          editTodoModal={editTodoModal}
+          sprints={sprints}
           todo={todo}
-          sprintsList={sprintsList}
         />
-      )} */}
+      )}
       {createSprintModal && (
         <CreateSprint
           isOpen={createSprintModal}
