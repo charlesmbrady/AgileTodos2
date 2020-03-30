@@ -12,8 +12,10 @@ export default function CreateTodo({
   const [todo, setTodo] = useState({
     subject: '',
     description: '',
-    priority: 0,
-    type: '',
+    priority: 2,
+    type: 'personal',
+    points: 0,
+    status: 'not started',
     SprintId: null
   });
   const showHideClassName = isOpen

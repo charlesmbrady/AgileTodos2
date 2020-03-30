@@ -14,9 +14,8 @@ export default function ActiveSprint() {
     //populate sprint
     API.getSprints().then(res => {
       console.log(res.data);
-      res.data
-        .filter(sprint => sprint.status == 'active')
-        .then(sprints => setSprint(sprints[0]));
+      let activeSprint = res.data.filter(sprint => sprint.status == 'active');
+      setSprint(activeSprint[0]);
     });
   }, []);
 
@@ -39,28 +38,28 @@ export default function ActiveSprint() {
           <h3 className='status-name'>Not Started</h3>
           {/* Filter and Map cards here */}
           {sprint != undefined &&
-            sprint.todos != undefined &&
-            sprint.todos
-              .filter(todo => todo.status === 'not started')
-              .map(todo => <div>{todo.subject}</div>)}
+            sprint.Todos != undefined &&
+            sprint.Todos.filter(
+              todo => todo.status == 'not started'
+            ).map(todo => <div>{todo.subject}</div>)}
         </div>
         <div className='status'>
           <h3 className='status-name'>In Progress</h3>
           {/* Filter and Map cards here */}
           {sprint != undefined &&
-            sprint.todos != undefined &&
-            sprint.todos
-              .filter(todo => todo.status === 'in progress')
-              .map(todo => <div>{todo.subject}</div>)}
+            sprint.Todos != undefined &&
+            sprint.Todos.filter(
+              todo => todo.status == 'in progress'
+            ).map(todo => <div>{todo.subject}</div>)}
         </div>
         <div className='status'>
           <h3 className='status-name'>Completed</h3>
           {/* Filter and Map cards here */}
           {sprint != undefined &&
-            sprint.todos != undefined &&
-            sprint.todos
-              .filter(todo => todo.status === 'completed')
-              .map(todo => <div>{todo.subject}</div>)}
+            sprint.Todos != undefined &&
+            sprint.Todos.filter(
+              todo => todo.status == 'completed'
+            ).map(todo => <div>{todo.subject}</div>)}
         </div>
       </div>
 
