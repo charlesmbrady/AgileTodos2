@@ -41,7 +41,7 @@ app.use(function(err, req, res, next) {
 });
 
 const syncOptions = {
-  force: process.env.FORCE_SYNC === 'false'
+  force: process.env.FORCE_SYNC === 'true'
 };
 console.log('sync options ' + syncOptions.force);
 

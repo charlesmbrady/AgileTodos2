@@ -12,7 +12,13 @@ export default function ActiveSprint() {
   useEffect(() => {
     //get sprints, filter for the one that is active status
     //populate sprint
-  });
+    API.getSprints().then(res => {
+      console.log(res.data);
+      res.data
+        .filter(sprint => sprint.status == 'active')
+        .then(sprints => setSprint(sprints[0]));
+    });
+  }, []);
 
   return (
     <div className='active'>
@@ -32,29 +38,29 @@ export default function ActiveSprint() {
         <div className='status'>
           <h3 className='status-name'>Not Started</h3>
           {/* Filter and Map cards here */}
-          {sprint.todos
-            .filter(todo => todo.status === 'not started')
-            .map(todo => (
-              <div>{todo.subject}</div>
-            ))}
+          {sprint != undefined &&
+            sprint.todos != undefined &&
+            sprint.todos
+              .filter(todo => todo.status === 'not started')
+              .map(todo => <div>{todo.subject}</div>)}
         </div>
         <div className='status'>
           <h3 className='status-name'>In Progress</h3>
           {/* Filter and Map cards here */}
-          {sprint.todos
-            .filter(todo => todo.status === 'in progress')
-            .map(todo => (
-              <div>{todo.subject}</div>
-            ))}
+          {sprint != undefined &&
+            sprint.todos != undefined &&
+            sprint.todos
+              .filter(todo => todo.status === 'in progress')
+              .map(todo => <div>{todo.subject}</div>)}
         </div>
         <div className='status'>
           <h3 className='status-name'>Completed</h3>
           {/* Filter and Map cards here */}
-          {sprint.todos
-            .filter(todo => todo.status === 'completed')
-            .map(todo => (
-              <div>{todo.subject}</div>
-            ))}
+          {sprint != undefined &&
+            sprint.todos != undefined &&
+            sprint.todos
+              .filter(todo => todo.status === 'completed')
+              .map(todo => <div>{todo.subject}</div>)}
         </div>
       </div>
 

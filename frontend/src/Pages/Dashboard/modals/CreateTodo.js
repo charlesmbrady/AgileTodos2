@@ -129,6 +129,28 @@ export default function CreateTodo({
             Error message
           </small>
 
+          <label for='status' data-test='create-todo-modal-label-status'>
+            Status
+          </label>
+          <select
+            type='text'
+            id='status'
+            placeholder='Enter status'
+            name='status'
+            data-test='create-todo-modal-input-status'
+            value={todo.status}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          >
+            <option value='not started' selected>
+              Not started
+            </option>
+            <option value='in progress'>In Progress</option>
+            <option value='completed'>Completed</option>
+          </select>
+          <small className='error' data-test='create-todo-modal-error-status'>
+            Error message
+          </small>
+
           <label for='points' data-test='create-todo-modal-label-points'>
             Points
           </label>

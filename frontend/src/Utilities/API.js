@@ -47,7 +47,7 @@ export default {
     });
   },
   updateSprint: function(sprint) {
-    return axios.put(`/api/sprint`, sprint).catch(err => {
+    return axios.put(`/api/sprint/${sprint.id}`, sprint).catch(err => {
       throw err;
     });
   },
