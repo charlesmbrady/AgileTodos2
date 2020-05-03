@@ -2,22 +2,31 @@ import './style.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../Utilities/API';
-import Sprint from '../../Components/Sprint/index.js';
-import CreateSprint from './modals/CreateSprint';
-import CreateTodo from './modals/CreateTodo';
+import EditTodo from './modals/EditTodo';
 
 export default function ActiveSprint() {
   const [sprint, setSprint] = useState([]);
+  const [todo, setTodo] = useState(0);
+  const [editTodoModal, setEditTodoModal] = useState(false);
+
+  const toggleEditTodoModal = () => {
+    setEditTodoModal(!editTodoModal);
+  };
+
+  const editTodo = (todo) => {
+    setTodo(todo);
+    setEditTodoModal(!editTodoModal);
+  };
 
   useEffect(() => {
     //get sprints, filter for the one that is active status
     //populate sprint
-    API.getSprints().then(res => {
+    API.getSprints().then((res) => {
       console.log(res.data);
-      let activeSprint = res.data.filter(sprint => sprint.status == 'active');
+      let activeSprint = res.data.filter((sprint) => sprint.status == 'active');
       setSprint(activeSprint[0]);
     });
-  }, []);
+  }, [editTodoModal]);
 
   return (
     <div className='active'>
@@ -40,8 +49,10 @@ export default function ActiveSprint() {
           {sprint != undefined &&
             sprint.Todos != undefined &&
             sprint.Todos.filter(
-              todo => todo.status == 'not started'
-            ).map(todo => <div>{todo.subject}</div>)}
+              (todo) => todo.status == 'not started'
+            ).map((todo) => (
+              <div onClick={() => editTodo(todo)}>{todo.subject}</div>
+            ))}
         </div>
         <div className='status'>
           <h3 className='status-name'>In Progress</h3>
@@ -49,8 +60,10 @@ export default function ActiveSprint() {
           {sprint != undefined &&
             sprint.Todos != undefined &&
             sprint.Todos.filter(
-              todo => todo.status == 'in progress'
-            ).map(todo => <div>{todo.subject}</div>)}
+              (todo) => todo.status == 'in progress'
+            ).map((todo) => (
+              <div onClick={() => editTodo(todo)}>{todo.subject}</div>
+            ))}
         </div>
         <div className='status'>
           <h3 className='status-name'>Completed</h3>
@@ -58,35 +71,24 @@ export default function ActiveSprint() {
           {sprint != undefined &&
             sprint.Todos != undefined &&
             sprint.Todos.filter(
-              todo => todo.status == 'completed'
-            ).map(todo => <div>{todo.subject}</div>)}
+              (todo) => todo.status == 'completed'
+            ).map((todo) => (
+              <div onClick={() => editTodo(todo)}>{todo.subject}</div>
+            ))}
         </div>
       </div>
 
       {/* _______________________________________ MODALS _______________________________________ */}
-      {/* {createTodoModal && (
-        <CreateTodo
-          isOpen={createTodoModal}
-          toggle={toggleCreateTodoModal}
-          setCreateTodoModal={setCreateTodoModal}
-          createTodoModal={createTodoModal}
-          sprints={sprints}
-        />
-      )} */}
-      {/* {todo && (
+
+      {editTodoModal && (
         <EditTodo
           isOpen={editTodoModal}
-          toggle={setTodo}
+          toggle={toggleEditTodoModal}
+          setEditTodoModal={setEditTodoModal}
+          editTodoModal={editTodoModal}
           todo={todo}
-          sprintsList={sprintsList}
         />
-      )} */}
-      {/* {createSprintModal && (
-        <CreateSprint
-          isOpen={createSprintModal}
-          toggle={toggleCreateSprintModal}
-        />
-      )} */}
+      )}
     </div>
   );
 }

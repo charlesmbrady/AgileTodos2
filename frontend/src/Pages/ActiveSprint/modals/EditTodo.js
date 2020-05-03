@@ -1,136 +1,211 @@
-// import React, { useState } from "react";
-// // import "./style.css";
-// // import AUTH from "../../utils/AUTH";
-// import API from "../../../utils/API";
-// import {
-//   Button,
-//   Modal,
-//   ModalHeader,
-//   ModalBody,
-//   ModalFooter,
-//   Form,
-//   FormGroup,
-//   Label,
-//   Input
-// } from "reactstrap";
+import React, { useState } from 'react';
+import './style.css';
+import API from '../../../Utilities/API';
 
-// export default function EditTodo({
-//   isOpen,
-//   toggle,
-//   userId,
-//   todo,
-//   sprintsList
-// }) {
-//   const [subject, setSubject] = useState(todo.subject);
-//   const [description, setDescription] = useState(todo.description);
-//   const [priority, setPriority] = useState(todo.priority);
-//   const [points, setPoints] = useState(todo.points);
-//   const [sprint, setSprint] = useState({});
+export default function EditTodo({
+  isOpen,
+  toggle,
+  setEditTodoModal,
+  editTodoModal,
+  todo,
+  sprints
+}) {
+  const [editTodo, setEditTodo] = useState(todo);
+  const showHideClassName = isOpen
+    ? 'modal display-block'
+    : 'modal display-none';
 
-//   const updateTodo = () => {
-//     const newTodo = {
-//       id: todo._id,
-//       subject,
-//       type: todo.type,
-//       description,
-//       priority,
-//       points,
-//       sprint,
-//       status: "ready",
-//       user: userId
-//     };
+  const formUpdate = (fieldName, value) => {
+    let tempTodo = { ...editTodo };
+    tempTodo[fieldName] = value;
 
-//     API.updateTodo(newTodo).then(todoResponse => {
-//       if (todoResponse.status === 200) {
-//         toggle(null);
-//       }
-//     });
-//   };
+    setEditTodo(tempTodo);
+  };
 
-//   return (
-//     <Modal isOpen={isOpen} toggle={() => toggle(null)}>
-//       <ModalHeader toggle={() => toggle(null)}>Edit Todo</ModalHeader>
-//       <ModalBody>
-//         <Form>
-//           <FormGroup>
-//             <Label for="subject">Subject</Label>
-//             <Input
-//               type="text"
-//               name="subject"
-//               id="subject"
-//               placeholder=""
-//               value={subject}
-//               onChange={e => setSubject(e.target.value)}
-//             />
-//           </FormGroup>
-//           <FormGroup>
-//             <Label for="description">Description</Label>
-//             <Input
-//               type="textarea"
-//               name="text"
-//               id="description"
-//               value={description}
-//               onChange={e => setDescription(e.target.value)}
-//             />
-//           </FormGroup>
-//           <FormGroup>
-//             <Label for="priority">Priority</Label>
-//             <Input
-//               type="select"
-//               name="select"
-//               id="priority"
-//               value={priority}
-//               onChange={e => setPriority(e.target.value)}
-//             >
-//               <option>Select...</option>
-//               <option>High</option>
-//               <option>Medium</option>
-//               <option>Low</option>
-//             </Input>
-//           </FormGroup>
-//           <FormGroup>
-//             <Label for="points">Points</Label>
-//             <Input
-//               type="number"
-//               name="number"
-//               id="points"
-//               placeholder=""
-//               value={points}
-//               onChange={e => setPoints(e.target.value)}
-//             />
-//           </FormGroup>
-//           <FormGroup>
-//             <Label for="sprint">Sprint</Label>
-//             <Input
-//               type="select"
-//               name="select"
-//               id="sprint"
-//               value={sprint}
-//               onChange={e => setSprint(e.target.value)}
-//             >
-//               <option value={null}>Add to sprint...</option>
-//               {sprintsList
-//                 .filter(sprint => sprint.status !== "completed")
-//                 .map(sprint => (
-//                   <option
-//                     value={sprint._id}
-//                     onClick={() => setSprint(sprint._id)}
-//                   >
-//                     {sprint.name}
-//                   </option>
-//                 ))}
-//             </Input>
-//           </FormGroup>
-//         </Form>
-//       </ModalBody>
-//       <ModalFooter>
-//         <Button color="primary" onClick={() => updateTodo()}>
-//           Save
-//         </Button>{" "}
-//         <Button color="secondary" onClick={() => toggle(null)}>
-//           Cancel
-//         </Button>
-//       </ModalFooter>
-//     </Modal>
-//   );
-// }
+  const updateTodo = () => {
+    API.updateTodo(editTodo).then(res => {
+      if (res.status == 200) {
+        // toggle();
+        setEditTodoModal(!editTodoModal);
+      } else {
+        return false;
+      }
+    });
+  };
+
+  return (
+    <div className={showHideClassName}>
+      <form
+        id='form'
+        className='form modal-main'
+        onSubmit={e => e.preventDefault()}
+      >
+        <h2 data-test='header'>Edit Todo</h2>
+        <div className='form-control'>
+          <label for='subject' data-test='edit-todo-modal-label-subject'>
+            Subject
+          </label>
+          <input
+            type='text'
+            id='subject'
+            placeholder='Enter subject'
+            name='subject'
+            data-test='edit-todo-modal-input-subject'
+            value={editTodo.subject}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='edit-todo-modal-error-subject'>
+            Error message
+          </small>
+
+          <label
+            for='description'
+            data-test='edit-todo-modal-label-description'
+          >
+            Description
+          </label>
+          <input
+            type='text'
+            id='description'
+            placeholder='Enter description'
+            name='description'
+            data-test='edit-todo-modal-input-description'
+            value={editTodo.description}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small
+            className='error'
+            data-test='edit-todo-modal-error-description'
+          >
+            Error message
+          </small>
+
+          <label for='type' data-test='edit-todo-modal-label-type'>
+            Type
+          </label>
+          <select
+            type='text'
+            id='type'
+            placeholder='Enter type'
+            name='type'
+            data-test='edit-todo-modal-input-type'
+            value={editTodo.type}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          >
+            <option value='personal' selected>
+              Personal
+            </option>
+            <option value='work'>Work</option>
+            <option value='learning'>Learning</option>
+          </select>
+          <small className='error' data-test='edit-todo-modal-error-type'>
+            Error message
+          </small>
+
+          <label for='priority' data-test='edit-todo-modal-label-priority'>
+            Priority
+          </label>
+          <select
+            type='text'
+            id='priority'
+            placeholder='Enter priority'
+            name='priority'
+            data-test='edit-todo-modal-input-priority'
+            value={editTodo.priority}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          >
+            <option value='2' selected>
+              Medium
+            </option>
+            <option value='3'>High</option>
+            <option value='1'>Low</option>
+          </select>
+          <small className='error' data-test='edit-todo-modal-error-priority'>
+            Error message
+          </small>
+
+          <label for='status' data-test='edit-todo-modal-label-status'>
+            Status
+          </label>
+          <select
+            type='text'
+            id='status'
+            placeholder='Enter status'
+            name='status'
+            data-test='edit-todo-modal-input-status'
+            value={editTodo.status}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          >
+            <option value='not started' selected>
+              Not started
+            </option>
+            <option value='in progress'>In Progress</option>
+            <option value='completed'>Completed</option>
+          </select>
+          <small className='error' data-test='edit-todo-modal-error-status'>
+            Error message
+          </small>
+
+          <label for='points' data-test='edit-todo-modal-label-points'>
+            Points
+          </label>
+          <input
+            type='number'
+            id='points'
+            placeholder='Enter points'
+            name='points'
+            data-test='edit-todo-modal-input-points'
+            value={editTodo.points}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          />
+          <small className='error' data-test='edit-todo-modal-error-points'>
+            Error message
+          </small>
+
+          <label for='sprint' data-test='edit-todo-modal-label-sprint'>
+            Sprint
+          </label>
+          <select
+            type='text'
+            id='sprint'
+            placeholder='Enter sprint'
+            name='SprintId'
+            data-test='edit-todo-modal-input-sprint'
+            value={editTodo.SprintId}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          >
+            <option value={0} selected disabled hidden>
+              Select Sprint...
+            </option>
+            {sprints &&
+              sprints
+                .filter(sprint => sprint.status != 'closed')
+                .map(sprint => (
+                  <option value={sprint.id}>{sprint.name}</option>
+                ))}
+          </select>
+          <small className='error' data-test='edit-todo-modal-error-sprint'>
+            Error message
+          </small>
+        </div>
+
+        <button
+          type='submit'
+          className='close'
+          data-test='edit-todo-modal-submit-button'
+          onClick={() => updateTodo()}
+        >
+          Submit
+        </button>
+        <button
+          type='cancel'
+          className='close'
+          data-test='edit-todo-modal-cancel-button'
+          onClick={() => toggle()}
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  );
+}

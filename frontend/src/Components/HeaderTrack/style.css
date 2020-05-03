@@ -1,0 +1,48 @@
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
+}
+
+.header-track {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
+  color: white;
+  grid-gap: 0.8rem;
+  padding: 0px 15px;
+  border-bottom: 2px solid var(--fourth-color);
+}
+
+.track-title {
+}
+
+.track-item-container {
+  display: grid;
+  /* margin: auto; */
+  padding: 0px 10px;
+}
+
+.track-item-container:hover {
+  color: var(--fourth-color);
+  background: var(--fifth-color);
+  transition-duration: 300ms;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.track-item {
+  color: var(--fourth-color);
+  text-decoration: none;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--fourth-color);
+  text-decoration: none;
+}

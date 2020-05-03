@@ -11,7 +11,10 @@
 .todo {
   display: grid;
   grid-template-areas: 'type subject subject subject subject subject subject priority points remove';
+  /* grid-template-columns: 1fr; */
+  /* grid-template-rows: 1fr; */
   /* border-bottom: 1px solid white; */
+  /* grid-auto-flow: column; */
   background: var(--fourth-color);
 }
 
@@ -23,20 +26,26 @@
 
 .subject {
   grid-area: subject;
+  display: inline-block;
 }
 .type {
   grid-area: type;
+  display: inline-block;
 }
 .priority {
   grid-area: priority;
+  display: inline-block;
 }
 .points {
   grid-area: points;
+  display: inline-block;
 }
 .remove {
   grid-area: remove;
+  display: inline-block;
 }
 .remove:hover {
   cursor: pointer;
   color: red;
+  display: inline-block;
 }

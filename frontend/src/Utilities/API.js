@@ -60,5 +60,10 @@ export default {
     return axios.delete(`/api/todo/${todo.id}`).catch(err => {
       throw err;
     });
+  },
+  updateTodo: function(todo) {
+    return axios.put(`/api/todo/${todo.id}`, todo).catch(err => {
+      throw err;
+    });
   }
 };

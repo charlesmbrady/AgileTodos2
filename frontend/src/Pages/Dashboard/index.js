@@ -2,10 +2,12 @@ import './style.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../Utilities/API';
-import Sprint from '../../Components/Sprint/index.js';
+import Sprint from './Components/Sprint/index.js';
 import CreateSprint from './modals/CreateSprint';
 import CreateTodo from './modals/CreateTodo';
 import EditTodo from './modals/EditTodo';
+import HeaderTrack from '../../Components/HeaderTrack/index';
+import ToolsTrack from './Components/ToolsTrack/index';
 
 export default function Dashboard() {
   const [sprints, setSprints] = useState(null);
@@ -13,8 +15,7 @@ export default function Dashboard() {
   const [counter, setCounter] = useState(0);
   const [todo, setTodo] = useState(0);
 
-  const editTodo = todo => {
-    console.log('clickd');
+  const editTodo = (todo) => {
     setTodo(todo);
     setEditTodoModal(!editTodoModal);
   };
@@ -39,10 +40,10 @@ export default function Dashboard() {
     setCounter(temp);
   };
 
-  const removeTodo = todo => {
-    console.log('the todo id****** ' + todo.id);
+  const removeTodo = (todo) => {
+    setCounter(counter + 1);
 
-    API.removeTodo(todo).then(res => {
+    API.removeTodo(todo).then((res) => {
       if (res) {
         apiCall();
       }
@@ -50,45 +51,22 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    API.getSprints().then(res => {
+    API.getSprints().then((res) => {
       // if (res) {
       setSprints(res.data);
       // }
-      API.getTodos().then(todosRes => {
+      API.getTodos().then((todosRes) => {
         // if (todosRes.status == 200) {
         setTodos(todosRes.data);
         // }
       });
     });
-  }, [createSprintModal, createTodoModal, counter]);
+  }, [createSprintModal, createTodoModal, editTodoModal, counter]);
 
   return (
     <div className='dashboard'>
-      {/* This is the backlog */}
-      <div id='dashboard-header'>
-        <h1 id='dashboard-title' className='dashboard-header-item'>
-          Dashboard
-        </h1>
-        <Link to='activesprint' data-test='dashboard-to-active'>
-          Active Sprint
-        </Link>
-        <button
-          id='create-sprint-button'
-          className='dashboard-header-item'
-          data-test='dashboard-create-sprint-button'
-          onClick={() => toggleCreateSprintModal()}
-        >
-          Add sprint
-        </button>
-        <button
-          id='create-todo-button'
-          className='dashboard-header-item'
-          data-test='dashboard-create-todo-button'
-          onClick={() => toggleCreateTodoModal()}
-        >
-          Add todo
-        </button>
-      </div>
+      <HeaderTrack />
+      <ToolsTrack />
       <div className='sprint-list'>
         {sprints != undefined &&
           sprints.map((sprint, index) => (
@@ -97,7 +75,7 @@ export default function Dashboard() {
               index={index}
               sprint={sprint}
               editTodo={editTodo}
-              todos={todos.filter(todo => todo.SprintId == sprint.id)}
+              todos={todos.filter((todo) => todo.SprintId == sprint.id)}
               removeTodo={removeTodo}
             />
           ))}
