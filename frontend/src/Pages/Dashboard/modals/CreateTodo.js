@@ -6,13 +6,16 @@ export default function CreateTodo({
   isOpen,
   toggle,
   setCreateTodoModal,
-  createTodoModal
+  createTodoModal,
+  sprints
 }) {
   const [todo, setTodo] = useState({
     subject: '',
     description: '',
-    priority: 0,
-    type: '',
+    priority: 2,
+    type: 'personal',
+    points: 0,
+    status: 'not started',
     SprintId: null
   });
   const showHideClassName = isOpen
@@ -87,7 +90,7 @@ export default function CreateTodo({
           <label for='type' data-test='create-todo-modal-label-type'>
             Type
           </label>
-          <input
+          <select
             type='text'
             id='type'
             placeholder='Enter type'
@@ -95,7 +98,13 @@ export default function CreateTodo({
             data-test='create-todo-modal-input-type'
             value={todo.type}
             onChange={e => formUpdate(e.target.name, e.target.value)}
-          />
+          >
+            <option value='personal' selected>
+              Personal
+            </option>
+            <option value='work'>Work</option>
+            <option value='learning'>Learning</option>
+          </select>
           <small className='error' data-test='create-todo-modal-error-type'>
             Error message
           </small>
@@ -103,7 +112,7 @@ export default function CreateTodo({
           <label for='priority' data-test='create-todo-modal-label-priority'>
             Priority
           </label>
-          <input
+          <select
             type='text'
             id='priority'
             placeholder='Enter priority'
@@ -111,8 +120,36 @@ export default function CreateTodo({
             data-test='create-todo-modal-input-priority'
             value={todo.priority}
             onChange={e => formUpdate(e.target.name, e.target.value)}
-          />
+          >
+            <option value='2' selected>
+              Medium
+            </option>
+            <option value='3'>High</option>
+            <option value='1'>Low</option>
+          </select>
           <small className='error' data-test='create-todo-modal-error-priority'>
+            Error message
+          </small>
+
+          <label for='status' data-test='create-todo-modal-label-status'>
+            Status
+          </label>
+          <select
+            type='text'
+            id='status'
+            placeholder='Enter status'
+            name='status'
+            data-test='create-todo-modal-input-status'
+            value={todo.status}
+            onChange={e => formUpdate(e.target.name, e.target.value)}
+          >
+            <option value='not started' selected>
+              Not started
+            </option>
+            <option value='in progress'>In Progress</option>
+            <option value='completed'>Completed</option>
+          </select>
+          <small className='error' data-test='create-todo-modal-error-status'>
             Error message
           </small>
 
@@ -120,7 +157,7 @@ export default function CreateTodo({
             Points
           </label>
           <input
-            type='text'
+            type='number'
             id='points'
             placeholder='Enter points'
             name='points'
@@ -135,15 +172,25 @@ export default function CreateTodo({
           <label for='sprint' data-test='create-todo-modal-label-sprint'>
             Sprint
           </label>
-          <input
+          <select
             type='text'
             id='sprint'
             placeholder='Enter sprint'
-            name='sprint'
+            name='SprintId'
             data-test='create-todo-modal-input-sprint'
             value={todo.SprintId}
             onChange={e => formUpdate(e.target.name, e.target.value)}
-          />
+          >
+            <option value={0} selected disabled hidden>
+              Select Sprint...
+            </option>
+            {sprints &&
+              sprints
+                .filter(sprint => sprint.status != 'closed')
+                .map(sprint => (
+                  <option value={sprint.id}>{sprint.name}</option>
+                ))}
+          </select>
           <small className='error' data-test='create-todo-modal-error-sprint'>
             Error message
           </small>

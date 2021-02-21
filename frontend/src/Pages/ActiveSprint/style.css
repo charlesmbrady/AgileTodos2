@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
+}
+
+.status-list {
+  display: grid;
+  grid-area: status-list;
+  /* margin: 0 auto; */
+  /* margin-top: 20px; */
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-gap: 0.5rem;
+  /* align-items: flex-start; */
+  border: 1px solid yellow;
+  /* width: 95%; */
+}
+
+.active {
+  display: grid;
+  grid-gap: 5%;
+  grid-template-areas: 'header status-list status-list status-list status-list status-list';
+}
+
+#active-header {
+  color: var(--third-color);
+  font-family: 'Arial';
+  grid-area: header;
+  display: grid;
+  grid-template-columns: '1fr';
+  height: 100vh;
+  grid-gap: 5%;
+  grid-template-rows: repeat(auto-fit, minmax(100px, 200px));
+  /* max-width: 100px; */
+  border-right: 1px solid lightgray;
+}
+
+.active-header-item {
+}
+
+.status {
+  background: rgba(255, 255, 255, 0.746);
+}

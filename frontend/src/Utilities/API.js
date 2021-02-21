@@ -46,6 +46,11 @@ export default {
       throw err;
     });
   },
+  updateSprint: function(sprint) {
+    return axios.put(`/api/sprint/${sprint.id}`, sprint).catch(err => {
+      throw err;
+    });
+  },
   createTodo: function(todo) {
     return axios.post(`/api/todo`, todo).catch(err => {
       throw err;
@@ -53,6 +58,11 @@ export default {
   },
   removeTodo: function(todo) {
     return axios.delete(`/api/todo/${todo.id}`).catch(err => {
+      throw err;
+    });
+  },
+  updateTodo: function(todo) {
+    return axios.put(`/api/todo/${todo.id}`, todo).catch(err => {
       throw err;
     });
   }

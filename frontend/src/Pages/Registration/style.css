@@ -3,13 +3,22 @@
 :root {
   --success-color: #2ecc71;
   --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
 }
 
 .container {
-  background-color: white;
+  background-color: var(--fourth-color);
+  margin: 0 auto;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  width: 400px;
+  height: 100%;
+  max-height: 800px;
+  width: 100%;
+  max-width: 400px;
 }
 
 h2 {

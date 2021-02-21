@@ -1,0 +1,51 @@
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --first-color: #231c07;
+  --second-color: #392a16;
+  --third-color: #87f1ff;
+  --fourth-color: #c0f5fa;
+  --fifth-color: #bd8b9c;
+}
+
+.todo {
+  display: grid;
+  grid-template-areas: 'type subject subject subject subject subject subject priority points remove';
+  /* grid-template-columns: 1fr; */
+  /* grid-template-rows: 1fr; */
+  /* border-bottom: 1px solid white; */
+  /* grid-auto-flow: column; */
+  background: var(--fourth-color);
+}
+
+.todo:hover {
+  background: #ffffffb9;
+  /* cursor: pointer; */
+  transition-duration: 300ms;
+}
+
+.subject {
+  grid-area: subject;
+  display: inline-block;
+}
+.type {
+  grid-area: type;
+  display: inline-block;
+}
+.priority {
+  grid-area: priority;
+  display: inline-block;
+}
+.points {
+  grid-area: points;
+  display: inline-block;
+}
+.remove {
+  grid-area: remove;
+  display: inline-block;
+}
+.remove:hover {
+  cursor: pointer;
+  color: red;
+  display: inline-block;
+}

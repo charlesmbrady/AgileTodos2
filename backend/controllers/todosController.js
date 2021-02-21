@@ -86,7 +86,7 @@ module.exports = {
       }
       dbSprints.filter(sprint => sprint.id == req.params.id);
       if (dbSprints[0]) {
-        db.Sprint.destroy({
+        db.Todo.destroy({
           where: {
             id: req.params.id
           }

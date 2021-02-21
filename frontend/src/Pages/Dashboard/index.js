@@ -1,20 +1,29 @@
 import './style.css';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import API from '../../Utilities/API';
-import Sprint from '../../Components/Sprint/index.js';
+import Sprint from './Components/Sprint/index.js';
 import CreateSprint from './modals/CreateSprint';
 import CreateTodo from './modals/CreateTodo';
-// import EditTodo from './modals/EditTodo';
+import EditTodo from './modals/EditTodo';
+import HeaderTrack from '../../Components/HeaderTrack/index';
+import ToolsTrack from './Components/ToolsTrack/index';
 
 export default function Dashboard() {
   const [sprints, setSprints] = useState(null);
   const [todos, setTodos] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [todo, setTodo] = useState(0);
+
+  const editTodo = (todo) => {
+    setTodo(todo);
+    setEditTodoModal(!editTodoModal);
+  };
 
   //Modals
   const [createSprintModal, setCreateSprintModal] = useState(false);
   const [createTodoModal, setCreateTodoModal] = useState(false);
-  // const [editTodoModal] = useState(true);
+  const [editTodoModal, setEditTodoModal] = useState(false);
 
   const toggleCreateSprintModal = () => {
     setCreateSprintModal(!createSprintModal);
@@ -22,16 +31,19 @@ export default function Dashboard() {
   const toggleCreateTodoModal = () => {
     setCreateTodoModal(!createTodoModal);
   };
+  const toggleEditTodoModal = () => {
+    setEditTodoModal(!editTodoModal);
+  };
 
   const apiCall = () => {
     let temp = counter + 1;
     setCounter(temp);
   };
 
-  const removeTodo = todo => {
-    console.log('the todo id****** ' + todo.id);
+  const removeTodo = (todo) => {
+    setCounter(counter + 1);
 
-    API.removeTodo(todo).then(res => {
+    API.removeTodo(todo).then((res) => {
       if (res) {
         apiCall();
       }
@@ -39,45 +51,35 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    API.getSprints().then(res => {
+    API.getSprints().then((res) => {
       // if (res) {
       setSprints(res.data);
       // }
-      API.getTodos().then(todosRes => {
+      API.getTodos().then((todosRes) => {
         // if (todosRes.status == 200) {
         setTodos(todosRes.data);
         // }
       });
     });
-  }, [createSprintModal, createTodoModal, counter]);
+  }, [createSprintModal, createTodoModal, editTodoModal, counter]);
 
   return (
-    <div className='Dashboard'>
-      {/* This is the backlog */}
-      <h1>Dashboard</h1>
+    <div className='dashboard'>
+      <HeaderTrack />
+      <ToolsTrack />
       <div className='sprint-list'>
         {sprints != undefined &&
           sprints.map((sprint, index) => (
             <Sprint
               key={index}
+              index={index}
               sprint={sprint}
-              todos={todos}
+              editTodo={editTodo}
+              todos={todos.filter((todo) => todo.SprintId == sprint.id)}
               removeTodo={removeTodo}
             />
           ))}
       </div>
-      <button
-        data-test='dashboard-create-sprint-button'
-        onClick={() => toggleCreateSprintModal()}
-      >
-        Add sprint
-      </button>
-      <button
-        data-test='dashboard-create-todo-button'
-        onClick={() => toggleCreateTodoModal()}
-      >
-        Add todo
-      </button>
 
       <div className='backlog todos'></div>
 
@@ -88,16 +90,19 @@ export default function Dashboard() {
           toggle={toggleCreateTodoModal}
           setCreateTodoModal={setCreateTodoModal}
           createTodoModal={createTodoModal}
+          sprints={sprints}
         />
       )}
-      {/* {todo && (
+      {editTodoModal && (
         <EditTodo
           isOpen={editTodoModal}
-          toggle={setTodo}
+          toggle={toggleEditTodoModal}
+          setEditTodoModal={setEditTodoModal}
+          editTodoModal={editTodoModal}
+          sprints={sprints}
           todo={todo}
-          sprintsList={sprintsList}
         />
-      )} */}
+      )}
       {createSprintModal && (
         <CreateSprint
           isOpen={createSprintModal}

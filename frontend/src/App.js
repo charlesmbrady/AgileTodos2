@@ -7,6 +7,7 @@ import './style.css';
 import Dashboard from './Pages/Dashboard';
 import Login from './Pages/Login';
 import Registration from './Pages/Registration';
+import ActiveSprint from './Pages/ActiveSprint/index';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Switch>
           <Route exact path='/registration' component={Registration}></Route>
           <Route exact path='/dashboard' component={Dashboard}></Route>
+          <Route exact path='/activesprint' component={ActiveSprint}></Route>
 
           <Route path='/' component={Login} />
         </Switch>

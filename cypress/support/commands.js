@@ -32,6 +32,30 @@ Cypress.Commands.add('login', user => {
   cy.get(pages.Login.SUBMIT).click();
 });
 
+// Create Todo
+Cypress.Commands.add('fillTodo', todo => {
+  // type in subject
+  cy.get(pages.CreateTodoModal.SUBJECT).type(todo.subject);
+
+  // type in description
+  cy.get(pages.CreateTodoModal.DESCRIPTION).type(todo.description);
+
+  // type in priority
+  cy.get(pages.CreateTodoModal.TYPE).select(todo.type);
+
+  // type in type
+  cy.get(pages.CreateTodoModal.PRIORITY).select(todo.priority);
+
+  // type in sprint
+  cy.get(pages.CreateTodoModal.SPRINT).select(todo.sprintName);
+});
+
+// Create Sprint
+Cypress.Commands.add('fillSprint', sprint => {
+  // type in subject
+  cy.get(pages.CreateSprintModal.NAME).type(sprint.name);
+});
+
 // Coverage
 if (Cypress.env('coverage')) {
   afterEach(function() {
